@@ -1,0 +1,20 @@
+{
+  "name": "donation-form",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "yarn run tailwind:css && react-scripts start",
+    "build": "yarn run tailwind:css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "tailwind:css":"tailwind build src/css/tailwind.src.css -c tailwind.js -o src/css/tailwind.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^0.6.0"
+  }
+}
