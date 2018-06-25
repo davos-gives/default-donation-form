@@ -3,3 +3,12 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.background-logo {
+  position: absolute;
+  width: 200px;
+  left: 170px;
+  top: 20px;
+  transform: rotate(-50deg);
+  /* background-blend-mode: screen; */
+}
