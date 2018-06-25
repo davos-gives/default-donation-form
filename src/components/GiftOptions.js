@@ -1,6 +1,24 @@
 import React from 'react';
 
-class Step1 extends React.Component {
+class GiftOptions extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      amount: 1000,
+      frequency: 'Monthly',
+    }
+  }
+
+  state = {
+    amount: '',
+    frequency: '',
+  }
+
+  handleClick = () => {
+    console.log(this.state);
+    this.props.addInfoToDonation(this.state);
+  }
 
   render() {
     return (
@@ -92,7 +110,7 @@ class Step1 extends React.Component {
                 <div className="w-1/6">
                 </div>
               </div>
-              <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-8 float-right">Next</button>
+              <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-8 float-right" onClick={this.handleClick}>Next</button>
           </div>
           <div className="w-1/3">
             <img src="/dogs.jpg" alt="dogs!" className="h-full rounded-r-lg side-image"/>
@@ -103,4 +121,4 @@ class Step1 extends React.Component {
   }
 }
 
-export default Step1;
+export default GiftOptions;
