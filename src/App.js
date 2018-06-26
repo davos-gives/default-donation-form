@@ -13,13 +13,14 @@ class App extends Component {
   state = {
     donation: {},
     donor: {},
+    payment: {},
   }
 
   componentDidUpdate() {
     localStorage.setItem('donation', JSON.stringify(this.state.donation));
   }
 
-  addInfoToDonation = (updatedDonation) => {
+  submitDonationInformation = (updatedDonation) => {
     const donor = {...this.state.donation};
     this.setState({
       donation: {
@@ -27,6 +28,22 @@ class App extends Component {
         frequency: updatedDonation.frequency,
       }
     });
+    this.props.history.push(`/step/2`);
+  }
+
+  updatePersonalInformation = (formState) => {
+    this.setState({
+      donor: formState
+    })
+    this.props.history.push(`/step/4`);
+  }
+
+  skipLogin = () => {
+    this.props.history.push(`/step/3`);
+  }
+
+  goBack = () => {
+    this.props.history.goBack();
   }
 
   render() {
@@ -36,19 +53,25 @@ class App extends Component {
       case '1':
         return (
           <GiftOptions
-            addInfoToDonation={this.addInfoToDonation} />
+            addInfoToDonation={this.submitDonationInformation} />
         );
       case '2':
-        return (<Step2 />);
+        return (<Step2
+          goBack={this.goBack}
+          skipLogin={this.skipLogin}
+        />);
       case '3':
-        return (<Step3 />);
+        return (<Step3
+          goBack={this.goBack}
+          updatePersonalInformation={this.updatePersonalInformation}
+        />);
       case '4':
         return (<Step4 />);
       case '5':
         return (<Step5 />);
       default:
         return (<GiftOptions
-          addInfoToDonation={this.addInfoToDonation}
+          addInfoToDonation={this.submitDonationInformation}
         />);
     }
   }

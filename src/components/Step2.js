@@ -73,11 +73,11 @@ class Step2 extends React.Component {
 
               <div className="flex mt-8 w-4/5 float-right pl-6">
                 <div className="w-1/2">
-                  <button className="rounded-full border border-purple border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto">Back</button>
+                  <button className="rounded-full border border-purple border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto" onClick={() => this.props.goBack()}>Back</button>
                 </div>
                 <div className="w-1/2">
                   <div className="float-right">
-                    <p className="text-purple text-xs text-center mr-8">Skip for now</p>
+                    <p className="text-purple text-xs text-center mr-8 cursor-pointer" onClick={() => this.props.skipLogin()}>Skip for now</p>
                     <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-2">Sign in with Davos</button>
                   </div>
 
