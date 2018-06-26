@@ -1,4 +1,7 @@
 import React from 'react';
+import GiftAmountDisplay from './GiftAmountDisplay';
+import GiftAmountSelect from './GiftAmountSelect';
+
 
 class GiftOptions extends React.Component {
 
@@ -7,17 +10,30 @@ class GiftOptions extends React.Component {
     this.state = {
       amount: 1000,
       frequency: 'Monthly',
+      custom: false,
     }
   }
 
   state = {
     amount: '',
     frequency: '',
+    custom: '',
   }
 
   handleClick = () => {
-    console.log(this.state);
     this.props.addInfoToDonation(this.state);
+  }
+
+  updateGiftAmount = ( newValue ) => {
+    let amount = { ...this.state.amount }
+    amount = newValue;
+    this.setState({ amount });
+  }
+
+  updateCustomState = ( newValue ) => {
+    let custom = { ...this.state.custom };
+    custom = newValue;
+    this.setState({ custom });
   }
 
   render() {
@@ -59,12 +75,10 @@ class GiftOptions extends React.Component {
               </div>
             </div>
               <div className="flex mt-8">
-                <div className="w-1/2">
-                  <div className="bg-purple text-white w-64 rounded-lg pt-8 text-center float-right pb-4">
-                    <span className="text-5xl font-bold block pb-2">$10</span>
-                    <span className="block border-t pt-2 border-white border-solid mx-8 text-xl font-bold pb-4">One-time gift</span>
-                  </div>
-                </div>
+                <GiftAmountDisplay
+                  type="one-time"
+                  amount={this.state.amount}
+                />
                 <div className="w-1/2">
                   <div className="bg-white text-grey-darker w-64 rounded-lg pt-8 text-center shadow-md mx-auto pb-4">
                     <span className="text-5xl font-bold block pb-2">$  &#32; &#32;</span>
@@ -73,40 +87,52 @@ class GiftOptions extends React.Component {
                 </div>
               </div>
               <div className="flex mt-8 w-5/6 ml-8 pl-6">
-                <div className="w-1/3">
-                  <div className="bg-white shadow-md rounded-lg text-grey-darker w-29 px-8 py-6 text-lg text-center">
-                    $5
-                  </div>
-                </div>
-                <div className="w-1/3">
-                  <div className="bg-white shadow-md rounded-lg text-grey-darker w-29 px-8 pt-6 pb-5 text-lg text-center border-b-4 font-bold border-purple">
-                    $10
-                  </div>
-                </div>
-                <div className="w-1/3">
-                  <div className="bg-white shadow-md rounded-lg text-grey-darker w-29 px-8 py-6 text-lg text-center">
-                    $30
-                  </div>
-                </div>
+                <GiftAmountSelect
+                  amount={500}
+                  setAmount={this.state.amount}
+                  updateGiftAmount={this.updateGiftAmount}
+                  updateCustomState={this.updateCustomState}
+                  custom={this.state.custom}
+                />
+                <GiftAmountSelect
+                  amount={1000}
+                  setAmount={this.state.amount}
+                  updateGiftAmount={this.updateGiftAmount}
+                  updateCustomState={this.updateCustomState}
+                  custom={this.state.custom}
+                />
+                <GiftAmountSelect
+                  amount={3000}
+                  setAmount={this.state.amount}
+                  updateGiftAmount={this.updateGiftAmount}
+                  updateCustomState={this.updateCustomState}
+                  custom={this.state.custom}
+                />
                 <div className="w-1/6">
                 </div>
               </div>
               <div className="flex mt-8 w-5/6 ml-8 pl-6">
-                <div className="w-1/3">
-                  <div className="bg-white shadow-md rounded-lg text-grey-darker w-29 px-8 py-6 text-lg text-center">
-                    $50
-                  </div>
-                </div>
-                <div className="w-1/3">
-                  <div className="bg-white shadow-md rounded-lg text-grey-darker w-29 px-8 py-6 text-lg text-center">
-                    $100
-                  </div>
-                </div>
-                <div className="w-1/3">
-                  <div className="bg-white shadow-md rounded-lg text-grey-darker w-29 px-2 py-6 text-lg text-center">
-                    Custom
-                  </div>
-                </div>
+                <GiftAmountSelect
+                  amount={5000}
+                  setAmount={this.state.amount}
+                  updateGiftAmount={this.updateGiftAmount}
+                  updateCustomState={this.updateCustomState}
+                  custom={this.state.custom}
+                />
+                <GiftAmountSelect
+                  amount={10000}
+                  setAmount={this.state.amount}
+                  updateGiftAmount={this.updateGiftAmount}
+                  updateCustomState={this.updateCustomState}
+                  custom={this.state.custom}
+                />
+                <GiftAmountSelect
+                  isCustom={true}
+                  setAmount={this.state.amount}
+                  updateGiftAmount={this.updateGiftAmount}
+                  updateCustomState={this.updateCustomState}
+                  custom={this.state.custom}
+                />
                 <div className="w-1/6">
                 </div>
               </div>
