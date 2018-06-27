@@ -92,6 +92,7 @@ class App extends Component {
       localStorage.removeItem('donation');
       localStorage.removeItem('donor');
       localStorage.removeItem('payment');
+      this.props.history.push('/thanks');
     }).catch(err => {
    // handle error
     });
