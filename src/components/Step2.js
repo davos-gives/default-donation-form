@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatPrice } from '../helpers';
 
 class Step2 extends React.Component {
 
@@ -45,9 +46,9 @@ class Step2 extends React.Component {
                   <div className="bg-purple text-white rounded-lg pt-6 text-center pb-4 flex overflow-hidden relative">
                     <span className="inline-block flex-1 pt-3">You are donating</span>
                     <div className="flex-1 mb-4">
-                      <span className="text-4xl font-semibold block">$10</span>
-                      <span className="text-xs -mt-6">Monthly</span>
-                      <img src="/Davos_icon.svg" className="background-logo" />
+                      <span className="text-4xl font-semibold block">{formatPrice(this.props.gift.amount)}</span>
+                      <span className="text-xs -mt-6">As a {this.props.gift.frequency} gift.</span>
+                      <img src="/Davos_icon.svg" className="background-logo ml-4" />
                     </div>
                     <div className="flex-1"></div>
                   </div>

@@ -91,7 +91,7 @@ class Step5 extends React.Component {
                 </div>
                 <div className="w-1/2 ml-8">
                   <div className="float-right">
-                    <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-5">Donate</button>
+                    <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-5" onClick={() => this.props.submitForm()}>Donate</button>
                   </div>
 
                 </div>

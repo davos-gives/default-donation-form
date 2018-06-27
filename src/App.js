@@ -7,17 +7,41 @@ import Step3 from './components/Step3';
 import Step4 from './components/Step4';
 import Step5 from './components/Step5';
 import base from './base';
+import uuidv1 from 'uuid';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      transaction: {
+        uuid: uuidv1(),
+      }
+    }
+  }
+
   state = {
+    transaction: {},
     donation: {},
     donor: {},
     payment: {},
   }
 
+  componentWillMount() {
+    this.setState({
+      donation: JSON.parse(localStorage.getItem('donation')),
+      donor: JSON.parse(localStorage.getItem('donor')),
+      payment: JSON.parse(localStorage.getItem('payment'))
+    });
+  }
+
   componentDidUpdate() {
     localStorage.setItem('donation', JSON.stringify(this.state.donation));
+    localStorage.setItem('donor', JSON.stringify(this.state.donor));
+    localStorage.setItem('payment', JSON.stringify(this.state.payment));
+  }
+
+  componentWillUnmount() {
   }
 
   submitDonationInformation = (updatedDonation) => {
@@ -45,6 +69,18 @@ class App extends Component {
     this.props.history.push(`/step/5`);
   }
 
+  submitFormToFirebase = () => {
+    base.post(`donations/${this.state.transaction.uuid}`, {
+      data: { donation: this.state.donation, donor: this.state.donor, payment: this.state.payment }
+    }).then(() => {
+      localStorage.removeItem('donation');
+      localStorage.removeItem('donor');
+      localStorage.removeItem('payment');
+    }).catch(err => {
+   // handle error
+    });
+  }
+
   skipLogin = () => {
     this.props.history.push(`/step/3`);
   }
@@ -66,6 +102,7 @@ class App extends Component {
         return (<Step2
           goBack={this.goBack}
           skipLogin={this.skipLogin}
+          gift={this.state.donation}
         />);
       case '3':
         return (<Step3
@@ -81,6 +118,7 @@ class App extends Component {
         return (<Step5
           state={this.state}
           goBack={this.goBack}
+          submitForm={this.submitFormToFirebase}
          />);
       default:
         return (<GiftOptions

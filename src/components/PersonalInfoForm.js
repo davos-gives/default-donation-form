@@ -6,15 +6,31 @@ class PersonalInfoForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      province: 'AB',
-      fname: '',
-      lname: '',
-      email: '',
-      street: '',
-      apt: '',
-      city: '',
-      postal: '',
+
+    let personalInfo = JSON.parse(localStorage.getItem('donor'));
+
+    if(personalInfo) {
+      this.state = {
+        province: personalInfo.province,
+        fname: personalInfo.fname,
+        lname: personalInfo.lname,
+        email: personalInfo.email,
+        street: personalInfo.street,
+        apt: personalInfo.apt,
+        city: personalInfo.city,
+        postal: personalInfo.postal,
+      }
+    } else {
+      this.state = {
+        province: 'AB',
+        fname: '',
+        lname: '',
+        email: '',
+        street: '',
+        apt: '',
+        city: '',
+        postal: '',
+      }
     }
   }
 

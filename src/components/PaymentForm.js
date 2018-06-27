@@ -4,6 +4,18 @@ class PaymentForm extends React.Component {
 
   constructor(props) {
     super(props);
+
+    let paymentInfo = JSON.parse(localStorage.getItem('payment'));
+
+    if(paymentInfo) {
+      this.state = {
+        number: paymentInfo.number,
+        expiryMonth: paymentInfo.expiryMonth,
+        expiryYear: paymentInfo.expiryYear,
+        CVV: paymentInfo.CVV,
+      }
+
+    } else {
     this.state = {
       number: '',
       expiryMonth: '',
@@ -11,6 +23,7 @@ class PaymentForm extends React.Component {
       CVV: ''
     }
   }
+}
 
   state = {
     number: '',
@@ -54,7 +67,7 @@ class PaymentForm extends React.Component {
 
           <div className="border-b border-grey pb-3 mt-6 w-1/5">
             <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="email">CVV</label>
-            <input className="block mt-2 text-grey-darker font-semibold pl-4 w-24" type="email" name="CVV" placeholder="123" onChange={this.handleInputChange} value={this.state.cvv}></input>
+            <input className="block mt-2 text-grey-darker font-semibold pl-4 w-24" type="email" name="CVV" placeholder="123" onChange={this.handleInputChange} value={this.state.CVV}></input>
           </div>
         </form>
 

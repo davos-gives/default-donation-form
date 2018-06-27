@@ -7,9 +7,19 @@ class GiftOptions extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      amount: 1000,
-      frequency: 'one-time',
+
+    let donationInfo = JSON.parse(localStorage.getItem('donation'));
+
+    if(donationInfo) {
+      this.state = {
+        amount: donationInfo.amount,
+        frequency: donationInfo.frequency,
+      }
+    } else {
+      this.state = {
+        amount: 1000,
+        frequency: 'one-time',
+      }
     }
   }
 
