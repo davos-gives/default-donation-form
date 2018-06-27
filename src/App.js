@@ -38,6 +38,13 @@ class App extends Component {
     this.props.history.push(`/step/4`);
   }
 
+  updatePaymentInformation = (formState) => {
+    this.setState({
+      payment: formState
+    })
+    this.props.history.push(`/step/5`);
+  }
+
   skipLogin = () => {
     this.props.history.push(`/step/3`);
   }
@@ -66,9 +73,15 @@ class App extends Component {
           updatePersonalInformation={this.updatePersonalInformation}
         />);
       case '4':
-        return (<Step4 />);
+        return (<Step4
+          goBack={this.goBack}
+          updatePaymentInformation={this.updatePaymentInformation}
+        />);
       case '5':
-        return (<Step5 />);
+        return (<Step5
+          state={this.state}
+          goBack={this.goBack}
+         />);
       default:
         return (<GiftOptions
           addInfoToDonation={this.submitDonationInformation}

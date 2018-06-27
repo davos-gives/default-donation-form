@@ -1,4 +1,5 @@
 import React from 'react';
+import PaymentForm from './PaymentForm';
 
 class Step4 extends React.Component {
 
@@ -40,51 +41,10 @@ class Step4 extends React.Component {
                 <p className="text-grey-darker text-sm">Review</p>
               </div>
             </div>
-              <div className="flex mt-8">
-                <div className="w-4/5 mx-auto pl-8">
-                <form className="flex flex-wrap mt-4">
-                  <div className="border-b border-grey pb-3 w-full">
-                    <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="fname">Card number</label>
-                    <input className="block mt-2 capitalize text-grey-darker font-semibold pl-4" type="text" name="fname" placeholder="**** **** **** 1234"></input>
-                  </div>
-
-                  <div className="border-b border-grey pb-3 mt-6 w-1/5">
-                    <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="lname">expires</label>
-                    <input className="block mt-2 capitalize text-grey-darker font-semibold pl-4" type="text" name="lname" placeholder="MM/YY"></input>
-                  </div>
-
-                  <div className="w-1/10"></div>
-
-                  <div className="border-b border-grey pb-3 mt-6 w-1/5">
-                    <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="email">CVV</label>
-                    <input className="block mt-2 text-grey-darker font-semibold pl-4" type="email" name="email" placeholder="123"></input>
-                  </div>
-                </form>
-
-                <p className="text-xs text-grey-darker block mt-8 mb-8">We also support the following payments</p>
-
-                <div className="flex">
-                  <div className="w-1/2 text-center">
-                    <img className="w-24" src="/ApplePay.png" />
-                  </div>
-                  <div className="w-1/2 text-center">
-                      <img className="w-24 mt-4" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="PayPal Logo" />
-                  </div>
-                </div>
-                </div>
-              </div>
-
-              <div className="flex mt-8 w-full pr-8 pr-8 ml-8 pl-8 float-right">
-                <div className="w-1/2 ml-8 pl-8">
-                  <button className="rounded-full border border-purple border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto">Back</button>
-                </div>
-                <div className="w-1/2 ml-8">
-                  <div className="float-right">
-                    <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-5">Next</button>
-                  </div>
-
-                </div>
-              </div>
+              <PaymentForm
+                updatePaymentInformation={this.props.updatePaymentInformation}
+                goBack={this.props.goBack}
+              />
           </div>
           <div className="w-1/3">
             <img src="/dogs.jpg" alt="dogs!" className="h-full rounded-r-lg side-image"/>

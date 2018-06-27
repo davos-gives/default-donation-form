@@ -4,3 +4,8 @@ export function formatPrice(cents) {
     currency: "CAD"
   });
 }
+
+export function shortenCreditCard(cc) {
+  let shortenedCc = cc.toString().slice(-4);
+  return shortenedCc;
+}

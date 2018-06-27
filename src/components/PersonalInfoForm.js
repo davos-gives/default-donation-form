@@ -121,7 +121,7 @@ class PersonalInfoForm extends React.Component {
 
         <div className="flex mt-8 w-full pr-8 pr-8 ml-8 pl-8 float-right">
           <div className="w-1/2 ml-8 pl-8">
-            <button className="rounded-full border border-purple border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto" onClick={() => this.props.goBack()}>Back</button>
+            <button className="rounded-full border border-purple border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto" onClick={() => this.props.goBack}>Back</button>
           </div>
           <div className="w-1/2 ml-8">
             <div className="float-right">
