@@ -16,6 +16,7 @@ class App extends Component {
     this.state = {
       transaction: {
         uuid: uuidv1(),
+        inReview: false,
       }
     }
   }
@@ -44,7 +45,7 @@ class App extends Component {
   componentWillUnmount() {
   }
 
-  submitDonationInformation = (updatedDonation) => {
+  submitDonationInformation = (updatedDonation, nextLocation) => {
     const donor = {...this.state.donation};
     this.setState({
       donation: {
@@ -52,21 +53,36 @@ class App extends Component {
         frequency: updatedDonation.frequency,
       }
     });
-    this.props.history.push(`/step/2`);
+
+    if(nextLocation == 'next') {
+      this.props.history.push(`/step/2`);
+    } else {
+      this.props.history.push(`/step/5`);
+    }
   }
 
-  updatePersonalInformation = (formState) => {
+  updatePersonalInformation = (formState, nextLocation) => {
     this.setState({
       donor: formState
-    })
-    this.props.history.push(`/step/4`);
-  }
+    });
 
-  updatePaymentInformation = (formState) => {
+    if(nextLocation == 'next') {
+      this.props.history.push(`/step/4`);
+    } else {
+      this.props.history.push(`/step/5`);
+    }
+}
+
+  updatePaymentInformation = (formState, nextLocation) => {
     this.setState({
       payment: formState
     })
-    this.props.history.push(`/step/5`);
+
+    if(nextLocation == 'next') {
+      this.props.history.push(`/step/5`);
+    } else {
+      this.props.history.push(`/step/5`);
+    }
   }
 
   submitFormToFirebase = () => {
@@ -89,6 +105,16 @@ class App extends Component {
     this.props.history.goBack();
   }
 
+  goToPage = (pageNumber) => {
+    this.props.history.push(`/step/${pageNumber}`);
+  }
+
+  toggleInReview = () => {
+    const transaction = { ...this.state.transaction }
+    transaction['inReview'] = true;
+    this.setState({ transaction });
+  }
+
   render() {
     let { params } = this.props.match;
 
@@ -96,33 +122,42 @@ class App extends Component {
       case '1':
         return (
           <GiftOptions
-            addInfoToDonation={this.submitDonationInformation} />
+            addInfoToDonation={this.submitDonationInformation}
+            inReview={this.state.transaction.inReview}
+           />
         );
       case '2':
         return (<Step2
           goBack={this.goBack}
           skipLogin={this.skipLogin}
           gift={this.state.donation}
+          inReview={this.state.transaction.inReview}
         />);
       case '3':
         return (<Step3
           goBack={this.goBack}
           updatePersonalInformation={this.updatePersonalInformation}
+          inReview={this.state.transaction.inReview}
         />);
       case '4':
         return (<Step4
           goBack={this.goBack}
           updatePaymentInformation={this.updatePaymentInformation}
+          inReview={this.state.transaction.inReview}
         />);
       case '5':
         return (<Step5
           state={this.state}
           goBack={this.goBack}
           submitForm={this.submitFormToFirebase}
+          linkTo={this.goToPage}
+          toggleInReview={this.toggleInReview}
+          inReview={this.state.transaction.inReview}
          />);
       default:
         return (<GiftOptions
           addInfoToDonation={this.submitDonationInformation}
+          inReview={this.state.transaction.inReview}
         />);
     }
   }

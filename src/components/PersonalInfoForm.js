@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import ButtonBlock from './ButtonBlock';
 
 class PersonalInfoForm extends React.Component {
 
@@ -45,10 +46,6 @@ class PersonalInfoForm extends React.Component {
     postal: '',
   }
 
-  handleClick = () => {
-    this.props.addInfoToDonation(this.state);
-  }
-
   handleInputChange = (event) => {
     this.setState({
       [event.currentTarget.name]: event.currentTarget.value
@@ -61,8 +58,8 @@ class PersonalInfoForm extends React.Component {
     });
   }
 
-  submitForm = () => {
-    this.props.updatePersonalInformation(this.state);
+  submitForm = (newLocation) => {
+    this.props.updatePersonalInformation(this.state, newLocation);
   }
 
   render() {
@@ -135,17 +132,12 @@ class PersonalInfoForm extends React.Component {
           </div>
         </form>
 
-        <div className="flex mt-8 w-full pr-8 pr-8 ml-8 pl-8 float-right">
-          <div className="w-1/2 ml-8 pl-8">
-            <button className="rounded-full border border-purple border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto" onClick={() => this.props.goBack}>Back</button>
-          </div>
-          <div className="w-1/2 ml-8">
-            <div className="float-right">
-              <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-5" onClick={() => this.submitForm()}>Next</button>
-            </div>
-
-          </div>
-        </div>
+          <ButtonBlock
+            inReview={this.props.inReview}
+            goBack={this.props.goBack}
+            hasBack={true}
+            handleClick={this.submitForm}
+          />
       </div>
     )
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import GiftAmountDisplay from './GiftAmountDisplay';
 import GiftSelectBlock from './GiftSelectBlock';
 import StepTracker from './StepTracker';
+import ButtonBlock from './ButtonBlock';
 
 class GiftOptions extends React.Component {
 
@@ -28,8 +29,8 @@ class GiftOptions extends React.Component {
     frequency: '',
   }
 
-  handleClick = () => {
-    this.props.addInfoToDonation(this.state);
+  handleClick = (newLocation) => {
+    this.props.addInfoToDonation(this.state, newLocation);
   }
 
   updateGiftAmount = ( newValue ) => {
@@ -78,7 +79,10 @@ class GiftOptions extends React.Component {
               updateGiftAmount={this.updateGiftAmount}
               updateCustomState={this.updateCustomState}
             />
-            <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-8 float-right" onClick={this.handleClick}>Next</button>
+            <ButtonBlock
+              handleClick={this.handleClick}
+              inReview={this.props.inReview}
+            />
           </div>
           <div className="w-1/3">
             <img src="/dogs.jpg" alt="dogs!" className="h-full rounded-r-lg side-image"/>

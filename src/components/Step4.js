@@ -44,6 +44,7 @@ class Step4 extends React.Component {
               <PaymentForm
                 updatePaymentInformation={this.props.updatePaymentInformation}
                 goBack={this.props.goBack}
+                inReview={this.props.inReview}
               />
           </div>
           <div className="w-1/3">

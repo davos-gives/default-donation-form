@@ -3,6 +3,15 @@ import { formatPrice, shortenCreditCard } from '../helpers.js';
 
 class Step5 extends React.Component {
 
+  componentWillMount() {
+    this.setInReviewFlag();
+  }
+
+  setInReviewFlag = () => {
+    this.props.toggleInReview();
+  }
+
+
   render() {
     const { donation, donor, payment } = this.props.state;
 
@@ -46,49 +55,44 @@ class Step5 extends React.Component {
               <div className="flex mt-8">
                 <div className="w-4/5 mx-auto pl-8">
                 <form className="flex flex-wrap mt-4">
-                  <div className="border-b border-grey pb-3 w-45/100">
+                  <div className="border-b-2 border-purple pb-3 w-45/100">
                     <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="fname">my name is</label>
-                    <p className="block mt-2 capitalize text-grey-darker font-semibold pl-4" type="text" name="fname">{donor.fname} {donor.lname}</p>
+                    <p className="block mt-2 capitalize text-grey-darker font-semibold pl-4 cursor-pointer" type="text" name="fname" onClick={() => this.props.linkTo('3')}>{donor.fname} {donor.lname}</p>
                   </div>
 
                   <div className="w-1/10"></div>
 
-                  <div className="border-b border-grey pb-3 w-45/100">
-                    <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="lname">I'm donating</label>
-                    <p className="block mt-2 text-grey-darker font-semibold pl-4" type="text" name="lname">{formatPrice(donation.amount)} as a {donation.frequency} gift</p>
+                  <div className="border-b-2 border-purple pb-3 w-45/100">
+                    <label className="uppercase text-xs text-grey-darker block pl-4">I'm donating</label>
+                    <p className="block mt-2 text-grey-darker font-semibold pl-4 cursor-pointer" onClick={() => this.props.linkTo('1')}>{formatPrice(donation.amount)} as a {donation.frequency} gift</p>
                   </div>
 
-                  <div className="border-b border-grey pb-3 mt-6 w-full">
-                    <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="email">To</label>
-                    <p className="block mt-2 text-grey-darker font-semibold pl-4" type="email" name="email">BC SPCA's Coats for Canines campaign</p>
+                  <div className="pb-3 mt-6 w-full">
+                    <label className="uppercase text-xs text-grey-darker block pl-4">To</label>
+                    <p className="block mt-2 text-grey-darker font-semibold pl-4" >BC SPCA's Coats for Canines campaign</p>
                   </div>
 
-                  <div className="border-b border-grey pb-3 mt-6 w-full">
-                    <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="street">Receipt using</label>
-                    <p className="block mt-2 text-grey-darker font-semibold pl-4" type="email" name="street">{donor.street}, {donor.city}, {donor.province}, <span class="uppercase">{donor.postal}</span></p>
+                  <div className="border-b-2 border-purple pb-3 mt-6 w-full">
+                    <label className="uppercase text-xs text-grey-darker block pl-4">Receipt using</label>
+                    <p className="block mt-2 text-grey-darker font-semibold pl-4 cursor-pointer" onClick={() => this.props.linkTo('3')}>{donor.street}, {donor.city}, {donor.province}, <span className="uppercase">{donor.postal}</span></p>
                   </div>
 
 
-                  <div className="border-b border-grey pb-3 mt-6 w-45/100">
-                    <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="postal">Paying with</label>
-                    <p className="block mt-2 text-grey-darker pl-4 text-sm" type="text" name="postal">card ending with <span className="font-semibold">{shortenCreditCard(payment.number)}</span></p>
+                  <div className="border-b-2 border-purple pb-3 mt-6 w-45/100">
+                    <label className="uppercase text-xs text-grey-darker block pl-4">Paying with</label>
+                    <p className="block mt-2 text-grey-darker pl-4 text-sm cursor-pointer" onClick={() => this.props.linkTo('4')}>card ending with <span className="font-semibold">{shortenCreditCard(payment.number)}</span></p>
                   </div>
-
                   <div className="w-1/10"></div>
-
-                  <div className="border-b border-grey pb-3 mt-6 w-45/100">
-                    <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="province">I can be reached at</label>
-                    <p className="block mt-2 text-grey-darker font-semibold pl-4" type="text" name="province">{donor.email}</p>
+                  <div className="border-b-2 border-purple pb-3 mt-6 w-45/100">
+                    <label className="uppercase text-xs text-grey-darker block pl-4">I can be reached at</label>
+                    <p className="block mt-2 text-grey-darker font-semibold pl-4 cursor-pointer" onClick={() => this.props.linkTo('3')}>{donor.email}</p>
                   </div>
 
                 </form>
                 </div>
               </div>
-
               <div className="flex mt-8 w-full pr-8 pr-8 ml-8 pl-8 float-right">
-                <div className="w-1/2 ml-8 pl-8">
-                  <button className="rounded-full border border-purple border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto" onClick={() => this.props.goBack()}>Back</button>
-                </div>
+                <div className="w-1/2"></div>
                 <div className="w-1/2 ml-8">
                   <div className="float-right">
                     <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-5" onClick={() => this.props.submitForm()}>Donate</button>
@@ -105,5 +109,4 @@ class Step5 extends React.Component {
     );
   }
 }
-
 export default Step5;

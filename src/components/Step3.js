@@ -46,6 +46,7 @@ class Step3 extends React.Component {
                   <PersonalInfoForm
                     updatePersonalInformation={this.props.updatePersonalInformation}
                     goBack={this.props.goBack}
+                    inReview={this.props.inReview}
                   />
                 </div>
               </div>
