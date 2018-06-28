@@ -6,7 +6,7 @@ import Step2 from './components/Step2';
 import Step3 from './components/Step3';
 import Step4 from './components/Step4';
 import Step5 from './components/Step5';
-import base from './base';
+import base, { firebaseApp } from './base';
 import uuidv1 from 'uuid';
 
 class App extends Component {
@@ -43,10 +43,12 @@ class App extends Component {
   }
 
   componentWillUnmount() {
+    firebaseApp
+      .auth()
+      .signOut()
   }
 
   submitDonationInformation = (updatedDonation, nextLocation) => {
-    const donor = {...this.state.donation};
     this.setState({
       donation: {
         amount: updatedDonation.amount,
@@ -59,6 +61,56 @@ class App extends Component {
     } else {
       this.props.history.push(`/step/5`);
     }
+  }
+
+  loadUser = async (uid) => {
+    const donor  = { ...this.state.donor};
+    const payment = { ...this.state.payment};
+
+    donor['uid'] = uid;
+
+    await base.fetch(`${uid}`, {
+    }).then(data => {
+      console.log(data.fname);
+      donor['fname'] = data.fname;
+      donor['lname'] = data.lname;
+      donor['email'] = data.email;
+    })
+
+    await base.fetch('addresses', {
+      context: this,
+      asArray: true,
+      queries: {
+        orderByChild: 'owner',
+        equalTo: uid,
+      }
+    }).then(data => {
+      let home = data[0];
+      donor['city'] = home.city;
+      donor['postal'] = home.postal;
+      donor['province'] = home.province;
+      donor['street'] = home.street;
+      this.setState({ donor });
+    })
+
+    await base.fetch('saved-cards', {
+      context: this,
+      asArray: true,
+      queries: {
+        orderByChild: 'owner',
+        equalTo: uid,
+      }
+    }).then(data => {
+      let visa = data[0];
+      payment['CVV'] = visa.cvv;
+      payment['expiryMonth'] = visa['expiry-month'];
+      payment['expiryYear'] = visa['expiry-year'];
+      payment['number'] = visa['number'];
+      this.setState({ payment });
+
+    })
+
+    await this.props.history.push(`/step/5`);
   }
 
   updatePersonalInformation = (formState, nextLocation) => {
@@ -133,6 +185,7 @@ class App extends Component {
           skipLogin={this.skipLogin}
           gift={this.state.donation}
           inReview={this.state.transaction.inReview}
+          loadUser={this.loadUser}
         />);
       case '3':
         return (<Step3

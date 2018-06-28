@@ -1,7 +1,26 @@
 import React from 'react';
 import { formatPrice } from '../helpers';
+import Login from './Login';
+import firebase from 'firebase';
+import base, { firebaseApp } from '../base';
 
 class Step2 extends React.Component {
+
+  authHandler = async (authData) => {
+    this.props.loadUser(authData.user.uid);
+  }
+
+  authenticate = (credentials) => {
+    console.log(credentials);
+    firebaseApp
+      .auth()
+      .signInWithEmailAndPassword(credentials.username, credentials.password) //password should be testing123
+      .then(this.authHandler)
+      .catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+      });
+  }
 
   render() {
     return (
@@ -54,36 +73,9 @@ class Step2 extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="flex mt-4">
-                <div className="w-3/5 mx-auto pl-8">
-                  <div className="bg-white rounded-lg pt-3 pb-3 shadow-md pl-6">
-                    <label className="uppercase text-xs font-bold text-purple block" for="username">user name</label>
-                    <input className="block mt-4" type="text" name="username" placeholder="Username@email.com"></input>
-                  </div>
-                </div>
-              </div>
-              <div className="flex mt-4">
-                <div className="w-3/5 mx-auto pl-8">
-                  <div className="bg-white rounded-lg pt-3 pb-3 shadow-md pl-6">
-                    <label className="uppercase text-xs font-bold text-purple block" for="password">password</label>
-                    <input className="block mt-4" type="password" name="username" placeholder="*************"></input>
-                  </div>
-                  <p className="ml-6 text-xs mt-4 text-grey-dark">Forgot password?</p>
-                </div>
-              </div>
+              <Login authenticate={this.authenticate} skipLogin={this.props.skipLogin} goBack={this.props.goBack} />
 
-              <div className="flex mt-8 w-4/5 float-right pl-6">
-                <div className="w-1/2">
-                  <button className="rounded-full border border-purple border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto" onClick={() => this.props.goBack()}>Back</button>
-                </div>
-                <div className="w-1/2">
-                  <div className="float-right">
-                    <p className="text-purple text-xs text-center mr-8 cursor-pointer" onClick={() => this.props.skipLogin()}>Skip for now</p>
-                    <button className="rounded-full bg-purple text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-2">Sign in with Davos</button>
-                  </div>
 
-                </div>
-              </div>
           </div>
           <div className="w-1/3">
             <img src="/dogs.jpg" alt="dogs!" className="h-full rounded-r-lg side-image"/>
