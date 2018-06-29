@@ -13,7 +13,7 @@ class PaymentForm extends React.Component {
         number: paymentInfo.number,
         expiryMonth: paymentInfo.expiryMonth,
         expiryYear: paymentInfo.expiryYear,
-        CVV: paymentInfo.CVV,
+        cvv: paymentInfo.cvv,
       }
 
     } else {
@@ -21,7 +21,7 @@ class PaymentForm extends React.Component {
       number: '',
       expiryMonth: '',
       expiryYear: '',
-      CVV: ''
+      cvv: ''
     }
   }
 }
@@ -29,7 +29,7 @@ class PaymentForm extends React.Component {
     number: '',
     expiryMonth: '',
     expiryYear: '',
-    CVV: ''
+    cvv: ''
   }
 
   handleInputChange = (event) => {
@@ -63,7 +63,7 @@ class PaymentForm extends React.Component {
 
           <div className="border-b border-grey pb-3 mt-6 w-1/5">
             <label className="uppercase text-xs text-grey-darker block pl-4">CVV</label>
-            <input className="block mt-2 text-grey-darker font-semibold pl-4 w-24" name="CVV" placeholder="123" onChange={this.handleInputChange} value={this.state.CVV}></input>
+            <input className="block mt-2 text-grey-darker font-semibold pl-4 w-24" name="cvv" placeholder="123" onChange={this.handleInputChange} value={this.state.cvv}></input>
           </div>
         </form>
 

@@ -17,6 +17,7 @@ class App extends Component {
       transaction: {
         uuid: uuidv1(),
         inReview: false,
+        loggedIn: false,
       }
     }
   }
@@ -26,13 +27,15 @@ class App extends Component {
     donation: {},
     donor: {},
     payment: {},
+    addresses: {},
+    cards: {},
   }
 
   componentWillMount() {
     this.setState({
       donation: JSON.parse(localStorage.getItem('donation')),
       donor: JSON.parse(localStorage.getItem('donor')),
-      payment: JSON.parse(localStorage.getItem('payment'))
+      payment: JSON.parse(localStorage.getItem('payment')),
     });
   }
 
@@ -66,12 +69,12 @@ class App extends Component {
   loadUser = async (uid) => {
     const donor  = { ...this.state.donor};
     const payment = { ...this.state.payment};
+    const cards = { ...this.state.cards};
 
     donor['uid'] = uid;
 
     await base.fetch(`${uid}`, {
     }).then(data => {
-      console.log(data.fname);
       donor['fname'] = data.fname;
       donor['lname'] = data.lname;
       donor['email'] = data.email;
@@ -85,12 +88,7 @@ class App extends Component {
         equalTo: uid,
       }
     }).then(data => {
-      let home = data[0];
-      donor['city'] = home.city;
-      donor['postal'] = home.postal;
-      donor['province'] = home.province;
-      donor['street'] = home.street;
-      this.setState({ donor });
+      this.storeAddresses(data);
     })
 
     await base.fetch('saved-cards', {
@@ -101,16 +99,58 @@ class App extends Component {
         equalTo: uid,
       }
     }).then(data => {
-      let visa = data[0];
-      payment['CVV'] = visa.cvv;
-      payment['expiryMonth'] = visa['expiry-month'];
-      payment['expiryYear'] = visa['expiry-year'];
-      payment['number'] = visa['number'];
-      this.setState({ payment });
-
+      this.storeCards(data);
     })
 
+    await this.setDefaults(donor);
     await this.props.history.push(`/step/5`);
+    await this.setLoggedIn();
+  }
+
+  setLoggedIn = () => {
+    let transaction = { ...this.state.transaction }
+    transaction.loggedIn = true;
+    this.setState({ transaction });
+  }
+
+  setDefaults = (donor) => {
+    for(var key in this.state.addresses['home']) {
+        donor[`${key}`] = this.state.addresses['home'][key];
+      }
+    this.setState({ donor });
+    this.setState({ payment: this.state.cards['visa']})
+  }
+
+  storeCards = (cardArray) => {
+    cardArray.forEach(card => {
+      let cards = {};
+      for(var key in card) {
+          cards[`${key}`] = card[key];
+        }
+      this.addCardToState(cards)
+      })
+  }
+
+  storeAddresses = (addressArray) => {
+    addressArray.forEach(address => {
+      let addresses = {};
+      for(var key in address) {
+          addresses[`${key}`] = address[key];
+        }
+      this.addAddressToState(addresses)
+      })
+  }
+
+  addAddressToState = ( address ) => {
+    const addresses = {...this.state.addresses }
+    addresses[`${address['name']}`] = address;
+    this.setState({ addresses })
+  }
+
+  addCardToState = (card) => {
+    const cards = { ...this.state.cards }
+    cards[`${card['type']}`] = card;
+    this.setState({ cards });
   }
 
   updatePersonalInformation = (formState, nextLocation) => {
@@ -123,13 +163,12 @@ class App extends Component {
     } else {
       this.props.history.push(`/step/5`);
     }
-}
+  }
 
   updatePaymentInformation = (formState, nextLocation) => {
     this.setState({
       payment: formState
     })
-
     if(nextLocation == 'next') {
       this.props.history.push(`/step/5`);
     } else {
@@ -144,6 +183,7 @@ class App extends Component {
       localStorage.removeItem('donation');
       localStorage.removeItem('donor');
       localStorage.removeItem('payment');
+      localStorage.removeItem('transaction');
       this.props.history.push('/thanks');
     }).catch(err => {
    // handle error
@@ -192,12 +232,14 @@ class App extends Component {
           goBack={this.goBack}
           updatePersonalInformation={this.updatePersonalInformation}
           inReview={this.state.transaction.inReview}
+          loggedIn={this.state.transaction.loggedIn}
         />);
       case '4':
         return (<Step4
           goBack={this.goBack}
           updatePaymentInformation={this.updatePaymentInformation}
           inReview={this.state.transaction.inReview}
+          loggedIn={this.state.transaction.loggedIn}
         />);
       case '5':
         return (<Step5
@@ -207,6 +249,7 @@ class App extends Component {
           linkTo={this.goToPage}
           toggleInReview={this.toggleInReview}
           inReview={this.state.transaction.inReview}
+          loggedIn={this.state.transaction.loggedIn}
          />);
       default:
         return (<GiftOptions
