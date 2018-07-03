@@ -122,3 +122,26 @@ body {
 .province .Select-arrow-zone {
   vertical-align: top!important;
 }
+
+.invalid label {
+   position: relative;
+}
+
+.invalid label:before {
+  position: absolute;
+  top: 18px;
+  left: -25px;
+  content: url('/error.png');
+}
+
+.invalid label:after {
+  position: absolute;
+  top: 20px;
+  right: 0px;
+  content: 'Required';
+  background-color: #F85858;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 3px;
+
+}
