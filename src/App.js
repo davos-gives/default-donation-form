@@ -6,8 +6,12 @@ import Step2 from './components/Step2';
 import Step3 from './components/Step3';
 import Step4 from './components/Step4';
 import Step5 from './components/Step5';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Info from './components/Info';
 import base, { firebaseApp } from './base';
 import uuidv1 from 'uuid';
+
 
 class App extends Component {
 
@@ -36,6 +40,8 @@ class App extends Component {
       donation: JSON.parse(localStorage.getItem('donation')),
       donor: JSON.parse(localStorage.getItem('donor')),
       payment: JSON.parse(localStorage.getItem('payment')),
+      cards: JSON.parse(localStorage.getItem('cards')),
+      addresses: JSON.parse(localStorage.getItem('addresses')),
     });
   }
 
@@ -43,6 +49,9 @@ class App extends Component {
     localStorage.setItem('donation', JSON.stringify(this.state.donation));
     localStorage.setItem('donor', JSON.stringify(this.state.donor));
     localStorage.setItem('payment', JSON.stringify(this.state.payment));
+    localStorage.setItem('transaction', JSON.stringify(this.state.transaction));
+    localStorage.setItem('cards', JSON.stringify(this.state.cards));
+    localStorage.setItem('addresses', JSON.stringify(this.state.addresses));
   }
 
   componentWillUnmount() {
@@ -184,6 +193,8 @@ class App extends Component {
       localStorage.removeItem('donor');
       localStorage.removeItem('payment');
       localStorage.removeItem('transaction');
+      localStorage.removeItem('cards');
+      localStorage.removeItem('addresses');
       this.props.history.push('/thanks');
     }).catch(err => {
    // handle error
@@ -214,48 +225,88 @@ class App extends Component {
     switch(params.stepId) {
       case '1':
         return (
-          <GiftOptions
-            addInfoToDonation={this.submitDonationInformation}
-            inReview={this.state.transaction.inReview}
-           />
+          <div>
+            <Header />
+            <Info />
+            <GiftOptions
+              addInfoToDonation={this.submitDonationInformation}
+              inReview={this.state.transaction.inReview}
+             />
+             <Footer />
+         </div>
         );
       case '2':
-        return (<Step2
-          goBack={this.goBack}
-          skipLogin={this.skipLogin}
-          gift={this.state.donation}
-          inReview={this.state.transaction.inReview}
-          loadUser={this.loadUser}
-        />);
+        return (
+          <div>
+            <Header />
+            <Info />
+            <Step2
+              goBack={this.goBack}
+              skipLogin={this.skipLogin}
+              gift={this.state.donation}
+              inReview={this.state.transaction.inReview}
+              loadUser={this.loadUser}
+            />
+             <Footer />
+          </div>
+          );
       case '3':
-        return (<Step3
-          goBack={this.goBack}
-          updatePersonalInformation={this.updatePersonalInformation}
-          inReview={this.state.transaction.inReview}
-          loggedIn={this.state.transaction.loggedIn}
-        />);
+        return (
+          <div>
+            <Header />
+            <Info />
+            <Step3
+              goBack={this.goBack}
+              updatePersonalInformation={this.updatePersonalInformation}
+              inReview={this.state.transaction.inReview}
+              loggedIn={this.state.transaction.loggedIn}
+            />
+            <Footer />
+          </div>
+          );
       case '4':
-        return (<Step4
-          goBack={this.goBack}
-          updatePaymentInformation={this.updatePaymentInformation}
-          inReview={this.state.transaction.inReview}
-          loggedIn={this.state.transaction.loggedIn}
-        />);
+        return (
+          <div>
+          <Header />
+          <Info />
+          <Step4
+            goBack={this.goBack}
+            updatePaymentInformation={this.updatePaymentInformation}
+            inReview={this.state.transaction.inReview}
+            loggedIn={this.state.transaction.loggedIn}
+          />
+          <Footer />
+        </div>
+        );
       case '5':
-        return (<Step5
-          state={this.state}
-          goBack={this.goBack}
-          submitForm={this.submitFormToFirebase}
-          linkTo={this.goToPage}
-          toggleInReview={this.toggleInReview}
-          inReview={this.state.transaction.inReview}
-          loggedIn={this.state.transaction.loggedIn}
-         />);
+        return (
+          <div>
+            <Header />
+            <Info />
+            <Step5
+              state={this.state}
+              goBack={this.goBack}
+              submitForm={this.submitFormToFirebase}
+              linkTo={this.goToPage}
+              toggleInReview={this.toggleInReview}
+              inReview={this.state.transaction.inReview}
+              loggedIn={this.state.transaction.loggedIn}
+            />
+            <Footer />
+          </div>
+       );
       default:
-        return (<GiftOptions
-          addInfoToDonation={this.submitDonationInformation}
-          inReview={this.state.transaction.inReview}
-        />);
+        return (
+          <div>
+            <Header />
+            <Info />
+            <GiftOptions
+              addInfoToDonation={this.submitDonationInformation}
+              inReview={this.state.transaction.inReview}
+             />
+             <Footer />
+           </div>
+         );
     }
   }
 }

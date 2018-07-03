@@ -53,9 +53,9 @@ class GiftOptions extends React.Component {
 
   render() {
     return (
-      <div className="mx-auto font-sans container w-3/5 mt-8 pt-8">
+      <div className="mx-auto font-sans container w-3/5 -mt-32">
         <div className="bg-white mt-8 rounded-lg shadow-md flex self-center">
-          <div className="w-2/3 p-6 mr-8">
+          <div className="w-2/3 p-6 mr-8 mt-8 mx-8">
             <StepTracker />
             <div className="flex mt-8">
               <GiftAmountDisplay
