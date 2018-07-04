@@ -7,19 +7,27 @@ import base, { firebaseApp } from '../base';
 
 class Step2 extends React.Component {
 
+  state = {
+    formValid: true,
+  }
+
   authHandler = async (authData) => {
     this.props.loadUser(authData.user.uid);
   }
 
+  updateFormValidity = () => {
+    this.setState({ formValid: true})
+  }
+
   authenticate = (credentials) => {
+    let self = this;
     console.log(credentials);
     firebaseApp
       .auth()
       .signInWithEmailAndPassword(credentials.username, credentials.password) //password should be testing123
       .then(this.authHandler)
       .catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        self.setState({formValid: false});
       });
   }
 
@@ -42,7 +50,7 @@ class Step2 extends React.Component {
                   </div>
                 </div>
               </div>
-              <Login authenticate={this.authenticate} skipLogin={this.props.skipLogin} goBack={this.props.goBack} />
+              <Login authenticate={this.authenticate} skipLogin={this.props.skipLogin} goBack={this.props.goBack} formValidity={this.state.formValid} updateFormValidity={this.updateFormValidity}/>
 
 
           </div>

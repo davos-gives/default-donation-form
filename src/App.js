@@ -127,7 +127,19 @@ class App extends Component {
         donor[`${key}`] = this.state.addresses['home'][key];
       }
     this.setState({ donor });
-    this.setState({ payment: this.state.cards['visa']})
+    this.setState({ payment: {
+      card: {
+        value: this.state.cards['visa']['number']
+      },
+      cvv: {
+        value: this.state.cards['visa']['cvv']
+      },
+      expiry: {
+        month: this.state.cards['visa']['expiryMonth'],
+        year: this.state.cards['visa']['expiryYear']
+      }
+    }
+  })
   }
 
   storeCards = (cardArray) => {

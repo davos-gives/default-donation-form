@@ -1,4 +1,5 @@
 import React from 'react';
+import SignInButton from './SignInButton';
 
 class Login extends React.Component {
 
@@ -11,6 +12,7 @@ class Login extends React.Component {
     this.setState({
       [event.currentTarget.name]: event.currentTarget.value
     });
+    this.props.updateFormValidity();
   }
 
   render() {
@@ -19,15 +21,15 @@ class Login extends React.Component {
       <div>
         <div className="flex mt-4">
           <div className="w-3/5 mx-auto pl-8">
-            <div className="bg-white rounded-lg pt-3 pb-3 shadow-md pl-6">
+            <div className={this.props.formValidity ? "bg-white rounded-lg pt-3 pb-3 shadow-md pl-6" : "bg-white rounded-lg pt-3 pb-3 shadow-md pl-6 invalid-login"}>
               <label className="uppercase text-xs font-bold text-purple block" for="username">user name</label>
-              <input className="block mt-4 outline-none" type="text" name="username" placeholder="Username@email.com" onChange={this.handleInputChange} value={this.state.username}></input>
+              <input className="block mt-4 outline-none w-full" type="text" name="username" placeholder="Username@email.com" onChange={this.handleInputChange} value={this.state.username}></input>
             </div>
           </div>
         </div>
         <div className="flex mt-4">
           <div className="w-3/5 mx-auto pl-8">
-            <div className="bg-white rounded-lg pt-3 pb-3 shadow-md pl-6">
+            <div className={this.props.formValidity ? "bg-white rounded-lg pt-3 pb-3 shadow-md pl-6" : "bg-white rounded-lg pt-3 pb-3 shadow-md pl-6 invalid-login"}>
               <label className="uppercase text-xs font-bold text-purple block" for="password">password</label>
               <input className="block mt-4 outline-none" type="password" name="password" placeholder="*************" onChange={this.handleInputChange} value={this.state.password}></input>
             </div>
@@ -41,11 +43,7 @@ class Login extends React.Component {
           <button className="rounded-full border border-purple-darkest border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto" onClick={() => this.props.goBack()}>Back</button>
         </div>
         <div className="w-1/2">
-          <div className="float-right">
-            <p className="text-purple text-xs text-center mr-8 cursor-pointer" onClick={() => this.props.skipLogin()}>Skip for now</p>
-            <button className="rounded-full bg-orange text-white font-thin py-4 px-8 rounded-full mr-6 font-bold mt-2" onClick={() => this.props.authenticate(this.state)}>Sign in with Davos</button>
-          </div>
-
+          <SignInButton isValid={this.props.formValidity} authenticate={this.props.authenticate} skipLogin={this.props.skipLogin} username={this.state.username} password={this.state.password} signIn={() => this.props.authenticate(this.state)}/>
         </div>
       </div>
     </div>

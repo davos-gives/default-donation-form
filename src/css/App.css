@@ -123,6 +123,24 @@ body {
   vertical-align: top!important;
 }
 
+.invalid-login label {
+  position: relative;
+}
+
+.invalid-login label:before {
+  position: absolute;
+  top: 7px;
+  left: -50px;
+  transform: scale(0.5);
+  content: url('/error.png');
+}
+
+.invalid-login {
+  margin-bottom: -4px;
+  border-bottom: 4px solid;
+  border-color: #F85858;
+}
+
 .invalid label {
    position: relative;
 }
@@ -157,13 +175,6 @@ body {
   border-color: #F85858;
 }
 
-/* .invalid label:after {
-  position: absolute;
-  top: 20px;
-  right: 0px;
-  content: 'Required';
-  background-color: #F85858;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 3px;
-} */
+
+
+button:focus {outline:none;}
