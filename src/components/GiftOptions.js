@@ -82,6 +82,7 @@ class GiftOptions extends React.Component {
             <ButtonBlock
               handleClick={this.handleClick}
               inReview={this.props.inReview}
+              formValid={true}
             />
           </div>
           <div className="w-1/3">

@@ -80,7 +80,7 @@ class Step5 extends React.Component {
 
                   <div className="border-b-2 border-purple-darkest pb-3 mt-6 w-45/100">
                     <label className="uppercase text-xs text-grey-darker block pl-4">Paying with</label>
-                    <p className="block mt-2 text-grey-darker pl-4 text-sm cursor-pointer" onClick={() => this.props.linkTo('4')}>card ending with <span className="font-semibold">{shortenCreditCard(payment.number)}</span></p>
+                    <p className="block mt-2 text-grey-darker pl-4 text-sm cursor-pointer" onClick={() => this.props.linkTo('4')}>card ending with <span className="font-semibold">{shortenCreditCard(payment.card.value)}</span></p>
                   </div>
                   <div className="w-1/10"></div>
                   <div className="border-b-2 border-purple-darkest pb-3 mt-6 w-45/100">

@@ -1959,6 +1959,24 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+creditcards-types@~1.6.0:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/creditcards-types/-/creditcards-types-1.6.2.tgz#5be6cacbcacc3e20ad238d2879ec5860f467f1cd"
+  dependencies:
+    xtend "~4.0.0"
+
+creditcards@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/creditcards/-/creditcards-2.1.2.tgz#5d0f6e91184172d3b6d57d8c5daefd1065c7cb6e"
+  dependencies:
+    creditcards-types "~1.6.0"
+    fast-luhn "~1.0.1"
+    is-valid-month "~1.0.0"
+    parse-int "^1.0.0"
+    parse-year "^1.0.0"
+    to-camel-case "~1.0.0"
+    xtend "~4.0.0"
+
 cross-spawn@5.1.0, cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -2328,6 +2346,10 @@ dom-urls@^1.1.0:
   resolved "https://registry.yarnpkg.com/dom-urls/-/dom-urls-1.1.0.tgz#001ddf81628cd1e706125c7176f53ccec55d918e"
   dependencies:
     urijs "^1.16.1"
+
+dom-walk@^0.1.0:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
 
 domain-browser@^1.1.1:
   version "1.2.0"
@@ -2792,6 +2814,13 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
+expand-year@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/expand-year/-/expand-year-1.0.0.tgz#addeec0a5edf5ed54f6c0748b641fd4893026a93"
+  dependencies:
+    parse-int "^1.0.0"
+    zero-fill "^2.2.1"
+
 express@^4.13.3:
   version "4.16.3"
   resolved "https://registry.yarnpkg.com/express/-/express-4.16.3.tgz#6af8a502350db3246ecc4becf6b5a34d22f7ed53"
@@ -2903,6 +2932,10 @@ fast-json-stable-stringify@^2.0.0:
 fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
+
+fast-luhn@~1.0.1:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/fast-luhn/-/fast-luhn-1.0.3.tgz#759ca3a983dda06742d3a3cfa6f64070536a422f"
 
 fastparse@^1.1.1:
   version "1.1.1"
@@ -3298,6 +3331,13 @@ global-prefix@^1.0.1:
     ini "^1.3.4"
     is-windows "^1.0.1"
     which "^1.2.14"
+
+global@~4.3.0:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
+  dependencies:
+    min-document "^2.19.0"
+    process "~0.5.1"
 
 globals@^9.17.0, globals@^9.18.0:
   version "9.18.0"
@@ -3777,6 +3817,12 @@ is-accessor-descriptor@^1.0.0:
   dependencies:
     kind-of "^6.0.0"
 
+is-android@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-android/-/is-android-1.0.1.tgz#3f1233f47b3889e7c87ed656d988ec43b167d0cb"
+  dependencies:
+    global "~4.3.0"
+
 is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
@@ -3912,6 +3958,12 @@ is-installed-globally@^0.1.0:
     global-dirs "^0.1.0"
     is-path-inside "^1.0.0"
 
+is-integer@^1.0.4, is-integer@~1.0.4:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/is-integer/-/is-integer-1.0.7.tgz#6bde81aacddf78b659b6629d629cadc51a886d5c"
+  dependencies:
+    is-finite "^1.0.0"
+
 is-npm@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-npm/-/is-npm-1.0.0.tgz#f2fb63a65e4905b406c86072765a1a4dc793b9f4"
@@ -4023,6 +4075,12 @@ is-typedarray@~1.0.0:
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
+
+is-valid-month@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-valid-month/-/is-valid-month-1.0.0.tgz#5609686910e2dad80ebac83f0a34978349256c99"
+  dependencies:
+    is-integer "~1.0.4"
 
 is-windows@^1.0.1, is-windows@^1.0.2:
   version "1.0.2"
@@ -4833,6 +4891,12 @@ mimic-fn@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
 
+min-document@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/min-document/-/min-document-2.19.0.tgz#7bd282e3f5842ed295bb748cdd9f1ffa2c824685"
+  dependencies:
+    dom-walk "^0.1.0"
+
 minimalistic-assert@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz#2e194de044626d4a10e7f7fbc00ce73e83e4d5c7"
@@ -5326,6 +5390,12 @@ parse-glob@^3.0.4:
     is-extglob "^1.0.0"
     is-glob "^2.0.0"
 
+parse-int@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/parse-int/-/parse-int-1.0.2.tgz#43360d60d8ee35a1259780e0522b0b96a84e6fc1"
+  dependencies:
+    is-integer "^1.0.4"
+
 parse-json@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-2.2.0.tgz#f480f40434ef80741f8469099f8dea18f55a4dc9"
@@ -5335,6 +5405,13 @@ parse-json@^2.2.0:
 parse-passwd@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/parse-passwd/-/parse-passwd-1.0.0.tgz#6d5b934a456993b23d37f40a382d6f1666a8e5c6"
+
+parse-year@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/parse-year/-/parse-year-1.0.0.tgz#5c1f8787b67cc58daea87b8a8032eee2e42d388b"
+  dependencies:
+    expand-year "^1.0.0"
+    parse-int "^1.0.0"
 
 parse5@^1.5.1:
   version "1.5.1"
@@ -5843,6 +5920,10 @@ process@^0.11.10:
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
 
+process@~0.5.1:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/process/-/process-0.5.2.tgz#1638d8a8e34c2f440a91db95ab9aeb677fc185cf"
+
 progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
@@ -6005,6 +6086,14 @@ re-base@^3.2.3:
   resolved "https://registry.yarnpkg.com/re-base/-/re-base-3.2.3.tgz#008f533f97aa807cb3b10f4e4d8567bb87b5f5e8"
   dependencies:
     firebase "^4.5.0"
+
+react-credit-card-primitives@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/react-credit-card-primitives/-/react-credit-card-primitives-1.3.3.tgz#ccbd98ef6c2d5c30396fc3df1d21302d4e4ac73d"
+  dependencies:
+    creditcards "^2.1.2"
+    is-android "^1.0.1"
+    prop-types "^15.5.10"
 
 react-dev-utils@^5.0.1:
   version "5.0.1"
@@ -7167,9 +7256,19 @@ to-arraybuffer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"
 
+to-camel-case@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/to-camel-case/-/to-camel-case-1.0.0.tgz#1a56054b2f9d696298ce66a60897322b6f423e46"
+  dependencies:
+    to-space-case "^1.0.0"
+
 to-fast-properties@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
+
+to-no-case@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/to-no-case/-/to-no-case-1.0.2.tgz#c722907164ef6b178132c8e69930212d1b4aa16a"
 
 to-object-path@^0.3.0:
   version "0.3.0"
@@ -7192,6 +7291,12 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+to-space-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/to-space-case/-/to-space-case-1.0.0.tgz#b052daafb1b2b29dc770cea0163e5ec0ebc9fc17"
+  dependencies:
+    to-no-case "^1.0.0"
 
 toposort@^1.0.0:
   version "1.0.7"
@@ -7742,7 +7847,7 @@ xmlhttprequest@1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
 
-xtend@^4.0.0:
+xtend@^4.0.0, xtend@~4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 
@@ -7850,3 +7955,7 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+zero-fill@^2.2.1:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/zero-fill/-/zero-fill-2.2.3.tgz#a3def06ba5e39ae644850bb4ca2ad4112b4855e9"

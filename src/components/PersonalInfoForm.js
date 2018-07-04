@@ -115,6 +115,7 @@ class PersonalInfoForm extends React.Component {
            wrapperDivClassName="border-b border-grey pb-3 w-45/100"
            label="first name"
            value={this.state.fname}
+           errorEmpty={true}
           />
 
           <div className="w-1/10"></div>
@@ -127,6 +128,7 @@ class PersonalInfoForm extends React.Component {
            wrapperDivClassName="border-b border-grey pb-3 w-45/100"
            label="last name"
            value={this.state.lname}
+           errorEmpty={true}
           />
           <MyInput
            name="email"
@@ -137,6 +139,7 @@ class PersonalInfoForm extends React.Component {
            wrapperDivClassName="border-b border-grey pb-3 mt-6 w-full"
            label="email"
            value={this.state.email}
+           errorEmpty={true}
           />
 
           <MyInput
@@ -146,6 +149,7 @@ class PersonalInfoForm extends React.Component {
            wrapperDivClassName="border-b border-grey pb-3 mt-6 w-7/10"
            label="street"
            value={this.state.street}
+           errorEmpty={true}
           />
 
           <div className="w-1/10"></div>
@@ -169,6 +173,7 @@ class PersonalInfoForm extends React.Component {
            wrapperDivClassName="border-b border-grey pb-3 mt-6 w-266"
            label="city"
            value={this.state.city}
+           errorEmpty={true}
           />
           <div className="w-1/10"></div>
 
@@ -188,6 +193,7 @@ class PersonalInfoForm extends React.Component {
            required
            label="postal code"
            value={this.state.postal}
+           errorEmpty={true}
          />
      </Formsy>
      <ButtonBlock

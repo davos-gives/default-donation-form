@@ -12,7 +12,7 @@ class MyInput extends React.Component {
   }
 
   render() {
-    const errorMessage = this.props.getErrorMessage();
+    const errorMessage = (this.props.getErrorMessage() || (this.props.errorEmpty && !this.props.getValue()));
 
     return (
       <div className={errorMessage ? this.props.wrapperDivClassName + ' invalid' : this.props.wrapperDivClassName}>

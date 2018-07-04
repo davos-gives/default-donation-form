@@ -135,6 +135,24 @@ body {
   content: url('/error.png');
 }
 
+.Visa:before {
+  content: "";
+}
+
+.Visa:after {
+  position: absolute;
+  content: url('/visa.png');
+  top: 16px;
+  right: 5px;
+}
+
+.MasterCard:after {
+  position: absolute;
+  content: url('/mastercard.png');
+  top: 16px;
+  right: 5px;
+}
+
 .invalid {
   border-color: #F85858;
 }
