@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "firebase": "^5.1.0",
+    "formsy-react": "^1.1.4",
     "re-base": "^3.2.3",
     "react": "^16.3.0-alpha.1",
     "react-dom": "^16.3.0-alpha.1",
