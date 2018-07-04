@@ -94,13 +94,11 @@ class Step3 extends React.Component {
                 </div>
               </div>
                 <div className="flex mt-8">
-                  <div className="">
                     <PersonalInfoForm
                       updatePersonalInformation={this.props.updatePersonalInformation}
                       goBack={this.props.goBack}
                       inReview={this.props.inReview}
                     />
-                  </div>
                 </div>
             </div>
             <div className="w-1/3">
