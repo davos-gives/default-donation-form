@@ -25,6 +25,15 @@ class PersonalInfoForm extends React.Component {
         apt: personalInfo.apt,
         city: personalInfo.city,
         postal: personalInfo.postal,
+        formValid: true,
+        provinceValid: true,
+        fnameValid: true,
+        lnameValid: true,
+        emailValid: true,
+        streetValid: true,
+        aptValid: true,
+        cityValid: true,
+        postalValid: true,
       }
     } else {
       this.state = {
@@ -36,6 +45,7 @@ class PersonalInfoForm extends React.Component {
         apt: '',
         city: '',
         postal: '',
+        formValid: true,
         provinceValid: true,
         fnameValid: true,
         lnameValid: true,
@@ -57,32 +67,20 @@ class PersonalInfoForm extends React.Component {
     apt: '',
     city: '',
     postal: '',
-    provinceValid: '',
-    fnameValid: '',
-    lnameValid: '',
-    emailValid: '',
-    streetValid: '',
-    aptValid: '',
-    cityValid: '',
-    postalValid: '',
+  }
+
+  invalid = (element) => {
+    return element === false;
   }
 
   handleInputChange = (event) => {
-    if(this.validator.fieldValid(`${event.currentTarget.name}`)) {
-      this.setState({
-        [`${event.currentTarget.name}Valid`]: true,
-      })
-    } else {
-      this.setState({
-        [`${event.currentTarget.name}Valid`]: false,
-      })
-    }
-
-    this.forceUpdate();
-
     this.setState({
       [event.currentTarget.name]: event.currentTarget.value
     });
+
+    if(this.validator.allValid() ) {
+      console.log('input changes are making a difference!');
+    }
   }
 
   updateProvince = (event) => {
@@ -92,7 +90,19 @@ class PersonalInfoForm extends React.Component {
   }
 
   submitForm = (newLocation) => {
-    this.props.updatePersonalInformation(this.state, newLocation);
+    if(this.validator.allValid() ){
+      console.log('everything is good to go!');
+    } else {
+      console.log('there are some errors');
+      //this.validator.showMessages();
+      this.forceUpdate();
+    }
+
+
+    // this.props.updatePersonalInformation(this.state, newLocation);
+  }
+
+  componentDidMount() {
   }
 
   render() {
@@ -149,8 +159,6 @@ class PersonalInfoForm extends React.Component {
           <div className={(this.state.aptValid ? "border-b border-grey pb-3 mt-6 w-1/5" : "border-b border-grey pb-3 mt-6 w-1/5 invalid")}>
             <label className="uppercase text-xs text-grey-darker block pl-4" htmlFor="street">Apt#</label>
             <input className="block mt-2 text-grey-darker font-semibold pl-4 w-12 outline-none" type="apt" name="apt" placeholder="101" value={this.state.apt} onChange={this.handleInputChange}/>
-            {this.validator.message('apt', this.state.apt, 'required|integer')}
-
           </div>
 
           <div className={(this.state.cityValid ? "border-b border-grey pb-3 mt-6 w-266" : "border-b border-grey pb-3 mt-6 w-266 invalid" )}>
@@ -169,18 +177,18 @@ class PersonalInfoForm extends React.Component {
 
           <div className="w-1/10"></div>
 
-          <div className={(this.state.cityValid ? "border-b border-grey pb-3 mt-6 w-266" : "border-b border-grey pb-3 mt-6 w-266 invalid" )}>
+          <div className={(this.state.postalValid ? "border-b border-grey pb-3 mt-6 w-266" : "border-b border-grey pb-3 mt-6 w-266 invalid" )}>
             <label className="uppercase text-xs text-grey-darker block pl-4 " htmlFor="postal">Postal Code</label>
             <input className="block mt-2 text-grey-darker font-semibold pl-4 outline-none" type="text" name="postal" placeholder="V3J4L5" value={this.state.postal} onChange={this.handleInputChange} />
-            {this.validator.message('postal', this.state.postal, 'required|alpha_num|min:5|max:5')}
+            {this.validator.message('postal', this.state.postal, 'required|alpha_num|min:6|max:6')}
           </div>
         </form>
-
           <ButtonBlock
             inReview={this.props.inReview}
             goBack={this.props.goBack}
             hasBack={true}
             handleClick={this.submitForm}
+            formValid={this.state.formValid}
           />
       </div>
     )

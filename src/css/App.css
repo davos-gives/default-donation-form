@@ -129,12 +129,17 @@ body {
 
 .invalid label:before {
   position: absolute;
-  top: 18px;
-  left: -25px;
+  top: 7px;
+  left: -35px;
+  transform: scale(0.5);
   content: url('/error.png');
 }
 
-.invalid label:after {
+.invalid {
+  border-color: #F85858;
+}
+
+/* .invalid label:after {
   position: absolute;
   top: 20px;
   right: 0px;
@@ -143,5 +148,4 @@ body {
   color: #fff;
   padding: 5px 10px;
   border-radius: 3px;
-
-}
+} */
