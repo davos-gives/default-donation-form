@@ -23,7 +23,6 @@ class PaymentForm extends React.Component {
       expiry: '',
       cvv: '',
       canSubmit: '',
-
     }
   }
 }
@@ -35,7 +34,7 @@ class PaymentForm extends React.Component {
   }
 
   handleCardChange = (event) => {
-    this.setState({ card: {...event} }, () => {
+    this.setState({ card: {value: event.value, valid: event.valid} }, () => {
       this.formButton();
     })
   }
@@ -65,7 +64,11 @@ class PaymentForm extends React.Component {
   }
 
   handleCvvChange = (event) => {
-    this.setState({ cvv: {...event} }, () => {
+    this.setState({ cvv: {
+      focused: event.focused,
+      valid: event.valid,
+      value: event.value
+    } }, () => {
       this.formButton();
     })
   }

@@ -42,7 +42,7 @@ class Step2 extends React.Component {
                   <div className="bg-purple text-white rounded-lg pt-6 text-center pb-4 flex overflow-hidden relative">
                     <span className="inline-block flex-1 pt-3">You are donating</span>
                     <div className="flex-1 mb-4">
-                      <span className="text-4xl font-semibold block">{formatPrice(this.props.gift.amount)}</span>
+                      <span className="text-4xl font-semibold block z-10 relative">{formatPrice(this.props.gift.amount)}</span>
                       <span className="text-xs -mt-6">As a {this.props.gift.frequency} gift.</span>
                       <img src="/Davos_icon.svg" className="background-logo ml-4" />
                     </div>

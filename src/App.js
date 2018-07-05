@@ -17,17 +17,13 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      transaction: {
-        uuid: uuidv1(),
-        inReview: false,
-        loggedIn: false,
-      }
-    }
   }
 
   state = {
-    transaction: {},
+    transaction: {
+      loggedIn: false,
+      inReview: false,
+    },
     donation: {},
     donor: {},
     payment: {},
@@ -36,13 +32,28 @@ class App extends Component {
   }
 
   componentWillMount() {
+
+    let transaction = JSON.parse(localStorage.getItem('transaction'));
+
+    if (transaction === null ) {
+      this.setState({
+        donation: JSON.parse(localStorage.getItem('donation')),
+        donor: JSON.parse(localStorage.getItem('donor')),
+        payment: JSON.parse(localStorage.getItem('payment')),
+        cards: JSON.parse(localStorage.getItem('cards')),
+        addresses: JSON.parse(localStorage.getItem('addresses')),
+      })
+    } else {
     this.setState({
-      donation: JSON.parse(localStorage.getItem('donation')),
-      donor: JSON.parse(localStorage.getItem('donor')),
-      payment: JSON.parse(localStorage.getItem('payment')),
-      cards: JSON.parse(localStorage.getItem('cards')),
-      addresses: JSON.parse(localStorage.getItem('addresses')),
-    });
+         donation: JSON.parse(localStorage.getItem('donation')),
+         donor: JSON.parse(localStorage.getItem('donor')),
+         payment: JSON.parse(localStorage.getItem('payment')),
+         cards: JSON.parse(localStorage.getItem('cards')),
+         addresses: JSON.parse(localStorage.getItem('addresses')),
+         transaction: JSON.parse(localStorage.getItem('transaction'))
+       });
+     }
+
   }
 
   componentDidUpdate() {
@@ -301,8 +312,9 @@ class App extends Component {
               submitForm={this.submitFormToFirebase}
               linkTo={this.goToPage}
               toggleInReview={this.toggleInReview}
-              inReview={this.state.transaction.inReview}
               loggedIn={this.state.transaction.loggedIn}
+              inReview={this.state.transaction.inReview}
+
             />
             <Footer />
           </div>
@@ -314,7 +326,8 @@ class App extends Component {
             <Info />
             <GiftOptions
               addInfoToDonation={this.submitDonationInformation}
-              inReview={this.state.transaction.inReview}
+            //  loggedIn={this.state.transaction.loggedIn}
+            //  inReview={this.state.transaction.inReview}
              />
              <Footer />
            </div>

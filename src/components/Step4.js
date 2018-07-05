@@ -46,23 +46,36 @@ class Step4 extends React.Component {
               </div>
               <div className="mx-8 mt-8">
                 <div className="mx-8 mt-8 bg-white w-full shadow-md flex rounded-lg text-grey-darker w-29 pt-6 pb-5 text-lg text-center border-b-4 flex border-orange">
-                  <img src="/visa.png" />
-                  <p className="mx-8 align-middle text-sm mt-2 mr-8 pr-8">Visa ending in 2840</p>
-                  <p className="mx-8 align-middle text-sm mt-2 mr-8 pr-8">Expires 11/23</p>
-                  <img src="/ChevronDownGrey.svg" className="w-4 h-8 float-right"/>
+                  <img src="/visa.png" className="w-1/10"/>
+                  <p className="mx-8 align-left text-sm mt-2 mr-8 pr-8 w-1/2">Visa ending in 2840</p>
+                  <p className="mx-8 align-middle text-sm mt-2 mr-8 pr-8 w-1/3">Expires 11/23</p>
+                  <div className="w-1/10">
+                    <img src="/ChevronDownGrey.svg" className="w-4 h-8"/>
+                  </div>
                 </div>
 
                 <div className="mx-8 mt-8 bg-white w-full shadow-md flex rounded-lg text-grey-darker w-29 pt-6 pb-5 text-lg text-center border-b-4 flex">
-                  <img src="/mastercard.png" />
-                  <p className="mx-8 align-middle text-sm mt-2 mr-8 pr-8">Mastercard ending in 3426</p>
-                  <p className="mx-8 align-middle text-sm mt-2 mr-8 pr-8">Expires 12/21</p>
-                  <img src="/ChevronDownGrey.svg" className="w-4 h-8 float-right"/>
+                  <img src="/mastercard.png" className="w-1/10"/>
+                  <p className="mx-8 align-left text-sm mt-2 mr-8 pr-8 w-1/2">Mastercard ending in 3426</p>
+                  <p className="mx-8 align-middle text-sm mt-2 mr-8 pr-8 w-1/3">Expires 12/21</p>
+                  <div className="w-1/10">
+                    <img src="/ChevronDownGrey.svg" className="w-4 h-8"/>
+                  </div>
+                </div>
+
+                <div className="mx-8 mt-8 bg-white w-full shadow-md flex rounded-lg text-grey-darker w-29 pt-6 pb-5 text-lg text-center border-b-4 flex">
+                  <div className="w-full flex justify-center">
+                    <img src="/plus.png" className=""/>
+                    <p className="mx-8 align-left mr-8 pr-8">Add a new payment method</p>
+                  </div>
                 </div>
               </div>
               <ButtonBlock
                 goBack={this.props.goBack}
                 handleClick={this.submitForm}
                 inReview={this.props.inReview}
+                formValid={true}
+
               />
             </div>
             <div className="w-1/3">
