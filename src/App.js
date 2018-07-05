@@ -375,8 +375,8 @@ class App extends Component {
               addresses={this.state.addresses}
               selectSchool={this.selectSchool}
               selectHome={this.selectHome}
-              homeActive={this.state.addresses['home'].selected}
-              schoolActive={this.state.addresses['school'].selected}
+              homeActive={this.state.addresses ? this.state.addresses['home'].selected : false}
+              schoolActive={this.state.addresses ? this.state.addresses['school'].selected : false}
               updateSavedAddress={this.updateSavedAddress}
 
             />
@@ -394,8 +394,8 @@ class App extends Component {
             inReview={this.state.transaction.inReview}
             loggedIn={this.state.transaction.loggedIn}
             cards={this.state.cards}
-            visaActive={this.state.cards['visa'].selected}
-            mastercardActive={this.state.cards['mastercard'].selected}
+            visaActive={this.state.cards ? this.state.cards['visa'].selected : false}
+            mastercardActive={this.state.cards ? this.state.cards['mastercard'].selected : false}
             selectVisa={this.selectVisa}
             selectMastercard={this.selectMastercard}
             updateSavedPayment={this.updateSavedPayment}

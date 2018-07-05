@@ -22,6 +22,7 @@ class MyInput extends React.Component {
         type="text"
         value={this.props.getValue() || ''}
         className={this.props.className}
+        placeholder={this.props.placeholder}
         />
       </div>
     );

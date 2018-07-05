@@ -116,6 +116,7 @@ class PersonalInfoForm extends React.Component {
            label="first name"
            value={this.state.fname}
            errorEmpty={true}
+           placeholder={'Bilbo'}
           />
 
           <div className="w-1/10"></div>
@@ -129,10 +130,12 @@ class PersonalInfoForm extends React.Component {
            label="last name"
            value={this.state.lname}
            errorEmpty={true}
+           placeholder={'Baggins'}
+
           />
           <MyInput
            name="email"
-           className="block mt-2 text-grey-darker font-semibold pl-4 outline-none"
+           className="block w-full mt-2 text-grey-darker font-semibold pl-4 outline-none"
            validations="isEmail"
            validationError="this is not a valid email"
            required
@@ -140,16 +143,19 @@ class PersonalInfoForm extends React.Component {
            label="email"
            value={this.state.email}
            errorEmpty={true}
+           placeholder={'bilbo.baggins@theonering.org'}
+
           />
 
           <MyInput
            name="street"
-           className="block mt-2 text-grey-darker font-semibold pl-4 outline-none"
+           className="block mt-2 text-grey-darker font-semibold pl-4 outline-none w-full"
            required
            wrapperDivClassName="border-b border-grey pb-3 mt-6 w-7/10"
            label="street"
            value={this.state.street}
            errorEmpty={true}
+           placeholder={"1 bagshot row"}
           />
 
           <div className="w-1/10"></div>
@@ -162,6 +168,7 @@ class PersonalInfoForm extends React.Component {
            wrapperDivClassName="border-b border-grey pb-3 mt-6 w-1/5"
            label="apt"
            value={this.state.apt}
+           placeholder={"123"}
           />
 
           <MyInput
@@ -174,6 +181,7 @@ class PersonalInfoForm extends React.Component {
            label="city"
            value={this.state.city}
            errorEmpty={true}
+           placeholder={"Hobbiton"}
           />
           <div className="w-1/10"></div>
 
@@ -194,6 +202,8 @@ class PersonalInfoForm extends React.Component {
            label="postal code"
            value={this.state.postal}
            errorEmpty={true}
+           placeholder={"V5A0B9"}
+
          />
      </Formsy>
      <ButtonBlock
