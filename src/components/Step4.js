@@ -1,6 +1,8 @@
 import React from 'react';
 import PaymentForm from './PaymentForm';
 import ButtonBlock from './ButtonBlock';
+import StoredCard from './StoredCard';
+
 
 class Step4 extends React.Component {
 
@@ -45,23 +47,9 @@ class Step4 extends React.Component {
                 </div>
               </div>
               <div className="mx-8 mt-8">
-                <div className="mx-8 mt-8 bg-white w-full shadow-md flex rounded-lg text-grey-darker w-29 pt-6 pb-5 text-lg text-center border-b-4 flex border-orange">
-                  <img src="/visa.png" className="w-1/10"/>
-                  <p className="mx-8 align-left text-sm mt-2 mr-8 pr-8 w-1/2">Visa ending in 2840</p>
-                  <p className="mx-8 align-middle text-sm mt-2 mr-8 pr-8 w-1/3">Expires 11/23</p>
-                  <div className="w-1/10">
-                    <img src="/ChevronDownGrey.svg" className="w-4 h-8"/>
-                  </div>
-                </div>
 
-                <div className="mx-8 mt-8 bg-white w-full shadow-md flex rounded-lg text-grey-darker w-29 pt-6 pb-5 text-lg text-center border-b-4 flex">
-                  <img src="/mastercard.png" className="w-1/10"/>
-                  <p className="mx-8 align-left text-sm mt-2 mr-8 pr-8 w-1/2">Mastercard ending in 3426</p>
-                  <p className="mx-8 align-middle text-sm mt-2 mr-8 pr-8 w-1/3">Expires 12/21</p>
-                  <div className="w-1/10">
-                    <img src="/ChevronDownGrey.svg" className="w-4 h-8"/>
-                  </div>
-                </div>
+                <StoredCard card={this.props.cards['visa']} selected={this.props.visaActive} selectVisa={this.props.selectVisa}/>
+                <StoredCard card={this.props.cards['mastercard']} selected={this.props.mastercardActive} selectMastercard={this.props.selectMastercard} />
 
                 <div className="mx-8 mt-8 bg-white w-full shadow-md flex rounded-lg text-grey-darker w-29 pt-6 pb-5 text-lg text-center border-b-4 flex">
                   <div className="w-full flex justify-center">
@@ -71,11 +59,9 @@ class Step4 extends React.Component {
                 </div>
               </div>
               <ButtonBlock
-                goBack={this.props.goBack}
-                handleClick={this.submitForm}
+                handleClick={this.props.updateSavedPayment}
                 inReview={this.props.inReview}
                 formValid={true}
-
               />
             </div>
             <div className="w-1/3">

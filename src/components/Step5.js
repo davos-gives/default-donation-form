@@ -61,7 +61,7 @@ class Step5 extends React.Component {
                       <p className="text-grey-darker font-semibold text-lg mt-2">Hi, {donor.fname} {donor.lname}</p>
                     </div>
 
-                    <div className="border-b-2 border-purple-darkest pb-3 w-45/100">
+                    <div className="border-b-2 border-purple-darkest pb-3 w-1/2">
                       <label className="uppercase text-xs text-grey-darker block pl-4">you are donating</label>
                       <p className="block mt-2 text-grey-darker font-semibold pl-4 cursor-pointer" onClick={() => this.props.linkTo('1')}>{formatPrice(donation.amount)} as a {donation.frequency} gift</p>
                     </div>

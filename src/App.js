@@ -159,6 +159,9 @@ class App extends Component {
       for(var key in card) {
           cards[`${key}`] = card[key];
         }
+      if(cards['type'] === 'visa') {
+        cards['selected'] = true
+      }
       this.addCardToState(cards)
       })
   }
@@ -208,6 +211,39 @@ class App extends Component {
     }
   }
 
+  updateSavedPayment = () => {
+    if(this.state.cards['visa'].selected) {
+      this.setState({ payment: {
+        card: {
+          value: this.state.cards['visa']['number']
+        },
+        cvv: {
+          value: this.state.cards['visa']['cvv']
+        },
+        expiry: {
+          month: this.state.cards['visa']['expiryMonth'],
+          year: this.state.cards['visa']['expiryYear']
+        }
+      }
+    })
+    } else {
+      this.setState({ payment: {
+        card: {
+          value: this.state.cards['mastercard']['number']
+        },
+        cvv: {
+          value: this.state.cards['mastercard']['cvv']
+        },
+        expiry: {
+          month: this.state.cards['mastercard']['expiryMonth'],
+          year: this.state.cards['mastercard']['expiryYear']
+        }
+      }
+    })
+    }
+    this.props.history.push(`/step/5`);
+  }
+
   submitFormToFirebase = () => {
     base.post(`donations/${this.state.transaction.uuid}`, {
       data: { donation: this.state.donation, donor: this.state.donor, payment: this.state.payment }
@@ -241,6 +277,21 @@ class App extends Component {
     transaction['inReview'] = true;
     this.setState({ transaction });
   }
+
+  selectVisa = () => {
+    let cards = { ... this.state.cards }
+    cards['visa']['selected'] = true;
+    cards['mastercard']['selected'] = false;
+    this.setState({ cards });
+  }
+
+  selectMastercard = () => {
+    let cards = { ... this.state.cards }
+    cards['mastercard']['selected'] = true;
+    cards['visa']['selected'] = false;
+    this.setState({ cards });
+  }
+
 
   render() {
     let { params } = this.props.match;
@@ -297,6 +348,12 @@ class App extends Component {
             updatePaymentInformation={this.updatePaymentInformation}
             inReview={this.state.transaction.inReview}
             loggedIn={this.state.transaction.loggedIn}
+            cards={this.state.cards}
+            visaActive={this.state.cards['visa'].selected}
+            mastercardActive={this.state.cards['mastercard'].selected}
+            selectVisa={this.selectVisa}
+            selectMastercard={this.selectMastercard}
+            updateSavedPayment={this.updateSavedPayment}
           />
           <Footer />
         </div>
@@ -314,7 +371,6 @@ class App extends Component {
               toggleInReview={this.toggleInReview}
               loggedIn={this.state.transaction.loggedIn}
               inReview={this.state.transaction.inReview}
-
             />
             <Footer />
           </div>
@@ -326,8 +382,8 @@ class App extends Component {
             <Info />
             <GiftOptions
               addInfoToDonation={this.submitDonationInformation}
-            //  loggedIn={this.state.transaction.loggedIn}
-            //  inReview={this.state.transaction.inReview}
+             loggedIn={this.state.transaction.loggedIn}
+             inReview={this.state.transaction.inReview}
              />
              <Footer />
            </div>
