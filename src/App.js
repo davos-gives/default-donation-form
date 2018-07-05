@@ -172,6 +172,9 @@ class App extends Component {
       for(var key in address) {
           addresses[`${key}`] = address[key];
         }
+        if(addresses['name'] === 'home') {
+          addresses['selected'] = true
+        }
       this.addAddressToState(addresses)
       })
   }
@@ -244,6 +247,27 @@ class App extends Component {
     this.props.history.push(`/step/5`);
   }
 
+  updateSavedAddress = () => {
+    if(this.state.addresses['home'].selected) {
+      let donor = {...this.state.donor}
+      donor['city'] = this.state.addresses['home']['city']
+      donor['country'] = this.state.addresses['home']['country']
+      donor['postal'] = this.state.addresses['home']['postal']
+      donor['street'] = this.state.addresses['home']['street']
+      donor['province'] = this.state.addresses['home']['province']
+      this.setState({ donor })
+    } else {
+      let donor = {...this.state.donor}
+      donor['city'] = this.state.addresses['school']['city']
+      donor['country'] = this.state.addresses['school']['country']
+      donor['postal'] = this.state.addresses['school']['postal']
+      donor['street'] = this.state.addresses['school']['street']
+      donor['province'] = this.state.addresses['school']['province']
+      this.setState({ donor })
+    }
+    this.props.history.push(`/step/5`);
+  }
+
   submitFormToFirebase = () => {
     base.post(`donations/${this.state.transaction.uuid}`, {
       data: { donation: this.state.donation, donor: this.state.donor, payment: this.state.payment }
@@ -292,6 +316,20 @@ class App extends Component {
     this.setState({ cards });
   }
 
+  selectHome = () => {
+    let addresses = { ... this.state.addresses }
+    addresses['home']['selected'] = true;
+    addresses['school']['selected'] = false;
+    this.setState({ addresses });
+  }
+
+  selectSchool= () => {
+    let addresses = { ... this.state.addresses }
+    addresses['home']['selected'] = false;
+    addresses['school']['selected'] = true;
+    this.setState({ addresses });
+  }
+
 
   render() {
     let { params } = this.props.match;
@@ -334,6 +372,13 @@ class App extends Component {
               updatePersonalInformation={this.updatePersonalInformation}
               inReview={this.state.transaction.inReview}
               loggedIn={this.state.transaction.loggedIn}
+              addresses={this.state.addresses}
+              selectSchool={this.selectSchool}
+              selectHome={this.selectHome}
+              homeActive={this.state.addresses['home'].selected}
+              schoolActive={this.state.addresses['school'].selected}
+              updateSavedAddress={this.updateSavedAddress}
+
             />
             <Footer />
           </div>

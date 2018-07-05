@@ -123,6 +123,12 @@ body {
   vertical-align: top!important;
 }
 
+.right-button {
+  position: relative;
+  left:370px;
+  top: -5px;
+}
+
 .invalid-login label {
   position: relative;
 }
