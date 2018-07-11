@@ -23,6 +23,7 @@ class App extends Component {
     transaction: {
       loggedIn: false,
       inReview: false,
+      uuid: uuidv1(),
     },
     donation: {},
     donor: {},
@@ -270,7 +271,14 @@ class App extends Component {
 
   submitFormToFirebase = () => {
     base.post(`donations/${this.state.transaction.uuid}`, {
-      data: { donation: this.state.donation, donor: this.state.donor, payment: this.state.payment }
+      data: {
+        ...this.state.donation,
+        ...this.state.donor,
+        ...this.state.payment.card,
+        ...this.state.payment.expiry,
+        timestamp: Date.now(),
+
+      }
     }).then(() => {
       localStorage.removeItem('donation');
       localStorage.removeItem('donor');
