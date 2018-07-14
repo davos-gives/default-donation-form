@@ -277,6 +277,7 @@ class App extends Component {
         ...this.state.payment.card,
         ...this.state.payment.expiry,
         timestamp: Date.now(),
+        campaignId: 1,
 
       }
     }).then(() => {
