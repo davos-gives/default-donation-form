@@ -270,6 +270,20 @@ class App extends Component {
   }
 
   submitFormToFirebase = () => {
+    base.update(`donors/${this.state.donor.fname}${this.state.donor.lname}`, {
+      data: {
+        fname: this.state.donor.fname,
+        lname: this.state.donor.lname,
+        email: this.state.donor.email
+      }
+    })
+
+    base.update(`donors/${this.state.donor.fname}${this.state.donor.lname}/donations`, {
+      data: {
+        [`${this.state.transaction.uuid}`]: true,
+      }
+    });
+
     base.post(`donations/${this.state.transaction.uuid}`, {
       data: {
         ...this.state.donation,
@@ -278,7 +292,6 @@ class App extends Component {
         ...this.state.payment.expiry,
         timestamp: Date.now(),
         campaignId: 1,
-
       }
     }).then(() => {
       localStorage.removeItem('donation');
