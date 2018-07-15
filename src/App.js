@@ -292,6 +292,7 @@ class App extends Component {
         ...this.state.payment.expiry,
         timestamp: Date.now(),
         campaignId: 1,
+        donor: `${this.state.donor.fname}${this.state.donor.lname}`,
       }
     }).then(() => {
       localStorage.removeItem('donation');
