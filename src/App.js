@@ -270,17 +270,77 @@ class App extends Component {
   }
 
   submitFormToFirebase = () => {
+
+    if (this.state.donation.frequency !== 'one-time') {
+      base.post(`recurrings/${this.state.transaction.uuid}`, {
+        data: {
+            ...this.state.donation,
+            ...this.state.donor,
+            ...this.state.payment.card,
+            ...this.state.payment.expiry,
+            timestamp: Date.now(),
+            donor: `${this.state.donor.fname}${this.state.donor.lname}`,
+            relationship: `${this.state.donor.fname}-barks`,
+            campaign: `coats`,
+            card: 'card1',
+          }
+        });
+
+        base.update(`donors/${this.state.donor.fname}${this.state.donor.lname}/recurrings`, {
+          data: {
+            [`${this.state.transaction.uuid}`]: true,
+          }
+        });
+
+        base.update(`relationships/${this.state.donor.fname}-barks/recurrings`, {
+          data: {
+            [`${this.state.transaction.uuid}`]: true,
+          }
+        });
+    }
+
     base.update(`donors/${this.state.donor.fname}${this.state.donor.lname}`, {
       data: {
         fname: this.state.donor.fname,
         lname: this.state.donor.lname,
-        email: this.state.donor.email
+        email: this.state.donor.email,
+        organizations: {
+          1: true,
+        },
+        relationships: {
+          [`${this.state.donor.fname}-barks`]: true,
+        }
       }
-    })
+    });
 
     base.update(`donors/${this.state.donor.fname}${this.state.donor.lname}/donations`, {
       data: {
         [`${this.state.transaction.uuid}`]: true,
+      }
+    });
+
+    base.update(`donors/${this.state.donor.fname}${this.state.donor.lname}/relationships`, {
+      data: {
+        [`${this.state.donor.fname}-barks`]: true,
+      }
+    });
+
+    base.update(`relationships/${this.state.donor.fname}-barks`, {
+      data: {
+        organization: 1,
+        donor: `${this.state.donor.fname}${this.state.donor.lname}`,
+      }
+    });
+
+    base.update(`relationships/${this.state.donor.fname}-barks/donations`, {
+      data: {
+        [`${this.state.transaction.uuid}`]: true,
+      }
+    });
+
+    base.post(`organizations/1/relationships`, {
+      data: {
+        [`${this.state.donor.fname}-barks`]: true,
       }
     });
 
@@ -291,8 +351,9 @@ class App extends Component {
         ...this.state.payment.card,
         ...this.state.payment.expiry,
         timestamp: Date.now(),
-        campaignId: 1,
+        campaign: "coats",
         donor: `${this.state.donor.fname}${this.state.donor.lname}`,
+        relationship: `${this.state.donor.fname}-barks`
       }
     }).then(() => {
       localStorage.removeItem('donation');

@@ -19,7 +19,9 @@ class ThankYou extends React.Component {
             <p className="text-grey-darker text-center text-lg font-thin mt-4">Check your email for your receipt</p>
             <div className="mx-auto w-32">
               <button className="rounded-full border border-purple-darkest border-solid py-4 px-8 rounded-full mr-8 font-bold mt-5 text-grey-darker mx-auto mb-8 mt-8">Receipt</button>
-              <button className="rounded-full border border-purple-darkest border-solid py-4 px-8 rounded-full mr-8 font-bold text-grey-darker mx-auto">Manage</button>
+              <a href="https://my.davos.gives/">
+                <button className="rounded-full border border-purple-darkest border-solid py-4 px-8 rounded-full mr-8 font-bold text-grey-darker mx-auto">Manage</button>
+              </a>
             </div>
           </div>
           <div className="w-1/3">
