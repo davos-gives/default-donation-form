@@ -292,7 +292,20 @@ class App extends Component {
           }
         });
 
+        base.update(`campaigns/coats/recurrings`, {
+          data: {
+            [`${this.state.transaction.uuid}`]: true,
+          }
+        });
+
+
         base.update(`relationships/${this.state.donor.fname}-barks/recurrings`, {
+          data: {
+            [`${this.state.transaction.uuid}`]: true,
+          }
+        });
+
+        base.update(`cards/card1/recurrings`, {
           data: {
             [`${this.state.transaction.uuid}`]: true,
           }
@@ -341,6 +354,12 @@ class App extends Component {
     base.post(`organizations/1/relationships`, {
       data: {
         [`${this.state.donor.fname}-barks`]: true,
+      }
+    });
+
+    base.update(`campaigns/coats/donations`, {
+      data: {
+        [`${this.state.transaction.uuid}`]: true,
       }
     });
 
