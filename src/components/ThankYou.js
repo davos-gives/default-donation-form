@@ -11,9 +11,9 @@ class ThankYou extends React.Component {
       <Header />
       <Info thanks={true}/>
       <div className="mx-auto font-sans container w-3/5 -mt-32">
-        <div className="bg-white mt-8 rounded-lg shadow-md flex self-center">
+        <div className="bg-white mt-8 rounded-lg shadow-md flex self-center forced-height">
           <div className="w-2/3 p-6 mt-8">
-            <span className="bg-purple-darkest text-white rounded-full h-32 w-32 flex items-center justify-center mx-auto text-5xl mb-8 mt-8">&#x2713;</span>
+            <span className="bg-purple-darkest text-white rounded-full h-32 w-32 flex items-center justify-center mx-auto text-5xl mb-8 mt-8"><img src="./Confirm.svg" className="w-16"/></span>
 
             <h1 className="text-grey-darker text-center">Thank you for your donation!</h1>
             <p className="text-grey-darker text-center text-lg font-thin mt-4">Check your email for your receipt</p>

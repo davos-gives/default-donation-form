@@ -98,10 +98,6 @@ body {
   height: 60px!important;
 }
 
-#react-select-2--option-1, #react-select-2--option-3, #react-select-2--option-5, #react-select-2--option-7, #react-select-2--option-9, #react-select-2--option-11  {
-  background-color: #EEF0F1!important;
-}
-
 .Select-menu {
   max-height: 240px!important;
 }
@@ -112,6 +108,10 @@ body {
 
 .Select-option.is-selected {
   background: none!important;
+}
+
+.Select-option:nth-child(even) {
+  background-color: #EEF0F1!important;
 }
 
 .province .Select-value {
@@ -181,6 +181,8 @@ body {
   border-color: #F85858;
 }
 
-
+.forced-height {
+  height: 700px!important;
+}
 
 button:focus {outline:none;}

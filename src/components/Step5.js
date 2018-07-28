@@ -18,7 +18,7 @@ class Step5 extends React.Component {
     if(transaction.loggedIn) {
       return (
         <div className="mx-auto font-sans container w-3/5 -mt-32">
-          <div className="bg-white mt-8 rounded-lg shadow-md flex self-center">
+          <div className="bg-white mt-8 rounded-lg shadow-md flex self-center forced-height">
             <div className="w-2/3 p-6 mr-8 mt-8 mx-8">
               <h1 className="text-purple-darkest text-3xl flex align-middle">
                 <span className="bg-purple-darkest text-white rounded-full h-12 w-12 flex items-center justify-center mr-8 -mt-2">4</span>
@@ -110,7 +110,7 @@ class Step5 extends React.Component {
     } else {
       return (
         <div className="mx-auto font-sans container w-3/5 -mt-32">
-          <div className="bg-white mt-8 rounded-lg shadow-md flex self-center">
+          <div className="bg-white mt-8 rounded-lg shadow-md flex self-center forced-height">
             <div className="w-2/3 p-6 mr-8 mt-8 mx-8">
               <h1 className="text-purple-darkest text-3xl flex align-middle">
                 <span className="bg-purple-darkest text-white rounded-full h-12 w-12 flex items-center justify-center mr-8 -mt-2">4</span>

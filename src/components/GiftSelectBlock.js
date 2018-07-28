@@ -25,7 +25,7 @@ class GiftSelectBlock extends React.Component {
     if(this.props.currentGiftType === 'one-time') {
       return (
         <div>
-        <div className={"flex mt-8 w-5/6 ml-8 pl-6"}>
+        <div className={"flex mt-8 w-5/6"}>
           <GiftAmountSelect
             amount={500}
             setAmount={this.props.setAmount}
@@ -53,7 +53,7 @@ class GiftSelectBlock extends React.Component {
           <div className="w-1/6">
           </div>
         </div>
-        <div className={"flex mt-8 w-5/6 ml-8 pl-6"}>
+        <div className={"flex mt-8 w-5/6"}>
           <GiftAmountSelect
             amount={5000}
             setAmount={this.props.setAmount}
@@ -86,7 +86,7 @@ class GiftSelectBlock extends React.Component {
     } else {
       return (
         <div>
-        <div className={"flex mt-8 w-5/6 ml-8 pl-6 float-right"}>
+        <div className={"flex mt-8 w-5/6 float-right"}>
           <div className="w-1/6">
           </div>
           <GiftAmountSelect
@@ -114,7 +114,7 @@ class GiftSelectBlock extends React.Component {
             currentGiftType={this.props.currentGiftType}
           />
         </div>
-        <div className={"flex mt-8 w-5/6 ml-8 pl-6 float-right"}>
+        <div className={"flex mt-8 w-5/6 float-right"}>
           <div className="w-1/6">
           </div>
           <GiftAmountSelect

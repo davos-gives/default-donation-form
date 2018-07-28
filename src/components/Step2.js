@@ -34,13 +34,13 @@ class Step2 extends React.Component {
   render() {
     return (
       <div className="mx-auto font-sans container w-3/5 -mt-32">
-        <div className="bg-white mt-8 rounded-lg shadow-md flex self-center">
+        <div className="bg-white mt-8 rounded-lg shadow-md flex self-center forced-height">
           <div className="w-2/3 p-6 mr-8 mt-8 mx-8">
             <StepTracker />
               <div className="flex mt-8">
                 <div className="w-3/5 mx-auto pl-8">
                   <div className="bg-purple text-white rounded-lg pt-6 text-center pb-4 flex overflow-hidden relative">
-                    <span className="inline-block flex-1 pt-3">You are donating</span>
+                    <span className="inline-block w-24 pt-3">You are donating</span>
                     <div className="flex-1 mb-4">
                       <span className="text-4xl font-semibold block z-10 relative">{formatPrice(this.props.gift.amount)}</span>
                       <span className="text-xs -mt-6">As a {this.props.gift.frequency} gift.</span>
