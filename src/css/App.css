@@ -185,4 +185,12 @@ body {
   height: 700px!important;
 }
 
+.gift-options {
+  width: 225px;
+}
+
+.w90 {
+  width: 90%;
+}
+
 button:focus {outline:none;}

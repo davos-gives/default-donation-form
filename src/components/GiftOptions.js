@@ -57,7 +57,7 @@ class GiftOptions extends React.Component {
         <div className="bg-white mt-8 rounded-lg shadow-md flex self-center forced-height">
           <div className="w-2/3 p-6 mr-8 mt-8 mx-8">
             <StepTracker />
-            <div className="flex justify-between w-5/6 mx-auto mt-8">
+            <div className="flex justify-around w-full mx-auto mt-8">
               <GiftAmountDisplay
                 type="one-time"
                 currentGiftType={this.state.frequency}

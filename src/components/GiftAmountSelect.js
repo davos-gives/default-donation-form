@@ -37,7 +37,7 @@ class GiftAmountSelect extends React.Component {
       } else {
       return (
         <div className="w-1/3">
-          <div className={"bg-white shadow-md rounded-lg text-grey-darker w-29 pt-6 py-6 text-lg text-center font-bold border-orange " + this.floatPosition()} onClick={this.handleCustomClick}>
+          <div className={"bg-white shadow-md rounded-lg text-grey-darker w-29 pt-6 pb-6 text-lg text-center font-bold " + this.floatPosition()} onClick={this.handleCustomClick}>
             <input className="text-grey-darker font-bold w-20 border-none ml-2 text-center outline-none" value={this.props.amount} type="string" placeholder="Custom" onChange={this.handleChange} />
           </div>
         </div>

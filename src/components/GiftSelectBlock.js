@@ -50,8 +50,6 @@ class GiftSelectBlock extends React.Component {
             custom={this.state.custom}
             currentGiftType={this.props.currentGiftType}
           />
-          <div className="w-1/6">
-          </div>
         </div>
         <div className={"flex mt-8 w-5/6"}>
           <GiftAmountSelect
@@ -78,8 +76,6 @@ class GiftSelectBlock extends React.Component {
             custom={this.state.custom}
             currentGiftType={this.props.currentGiftType}
           />
-          <div className="w-1/6">
-          </div>
         </div>
       </div>
       )
@@ -87,8 +83,6 @@ class GiftSelectBlock extends React.Component {
       return (
         <div>
         <div className={"flex mt-8 w-5/6 float-right"}>
-          <div className="w-1/6">
-          </div>
           <GiftAmountSelect
             amount={500}
             setAmount={this.props.setAmount}
@@ -115,8 +109,6 @@ class GiftSelectBlock extends React.Component {
           />
         </div>
         <div className={"flex mt-8 w-5/6 float-right"}>
-          <div className="w-1/6">
-          </div>
           <GiftAmountSelect
             amount={5000}
             setAmount={this.props.setAmount}
