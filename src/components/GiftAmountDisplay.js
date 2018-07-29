@@ -63,7 +63,7 @@ class GiftAmountDisplay extends React.Component {
       if(currentGiftType !== 'one-time') {
         return (
           <div className="gift-options">
-            <div className="bg-orange text-white w-full rounded-lg pt-8 text-center pb-5">
+            <div className="bg-orange text-white w-full rounded-lg pt-8 text-center pb-6">
               <span className="text-5xl font-bold block pb-2">{formatPrice(amount)}</span>
               <Select className="capitalize bg-orange" options={options} clearable={false} isDisabled={true} searchable={false} value={this.state.recurringFrequency} placeholder="select an option" onChange={this.updateFrequency}/>
             </div>
@@ -72,7 +72,7 @@ class GiftAmountDisplay extends React.Component {
       } else {
         return (
           <div className="gift-options">
-            <div className="bg-white text-grey-darker w-full rounded-lg pt-8 text-center pb-5 shadow-md" onClick={() => this.props.updateGiftType(type)}>
+            <div className="bg-white text-grey-darker w-full rounded-lg pt-8 text-center pb-4 shadow-md" onClick={() => this.props.updateGiftType(type)}>
               <span className="text-5xl font-bold block pb-2">$</span>
               <span className="block border-t pt-2 border-white border-solid mx-8 text-xl font-bold pb-4 capitalize">Ongoing gift</span>
             </div>
