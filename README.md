@@ -21,7 +21,7 @@ Below you will find some information on how to perform common tasks.<br>
 ## Getting started
 
 1. Install Node and Create React App from your favourite application manager. For OSX we suggest Homebrew.
-2. Clone this project from the organizations repository, `cd` into it and install necessary packages using `yarn add`.
+2. Clone this project from the organizations repository, `cd` into it and install necessary packages using `yarn install`.
 3. enter `yarn start` to run the application locally, it'll automatically open a window in your default browswer.
 
 ## Config
