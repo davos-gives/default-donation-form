@@ -57,7 +57,7 @@ class Step5 extends React.Component {
                   <div className="w-4/5 mx-auto pl-8">
                   <form className="flex flex-wrap mt-4">
                     <div className="pb-3 w-full flex mb-4">
-                      <span className="rounded-full h-12 w-12 flex items-center justify-center mr-8 -mt-2 overflow-hidden"><img src="/ianknauer.png" /></span>
+                      <span className="rounded-full h-12 w-12 flex items-center justify-center mr-8 -mt-2 overflow-hidden bg-purple-icons"><span class="text-white capitalize self-center text-3xl">A</span></span>
                       <p className="text-grey-darker font-semibold text-lg mt-2">Hi, {donor.fname} {donor.lname}</p>
                     </div>
 

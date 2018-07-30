@@ -193,4 +193,9 @@ body {
   width: 90%;
 }
 
+.bg-purple-icons {
+  background-color: #9A79FF;
+}
+
+
 button:focus {outline:none;}
