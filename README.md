@@ -11,7 +11,7 @@ Below you will find some information on how to perform common tasks.<br>
 - [Getting Started](#getting-started)
 - [Config](#config)
 - [Available Scripts](#available-scripts)
-  - [yarn start](#yarn start)
+  - [yarn start](#yarn_start)
   - [yarn run build](#yarn_run_build)
 - [Libraries](#libraries)
   - [Tailwind](#tailwind)
