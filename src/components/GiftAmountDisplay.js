@@ -7,13 +7,23 @@ class GiftAmountDisplay extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      recurringFrequency: 'monthly',
+
+    let donationInfo = JSON.parse(localStorage.getItem('donation'));
+
+    console.log(donationInfo);
+    if(donationInfo &&  donationInfo.frequency !== 'one-time') {
+      this.state = {
+        recurringFrequency: donationInfo.frequency,
+      }
+    } else {
+      this.state = {
+        recurringFrequency: 'monthly',
+      }
     }
   }
 
   state = {
-    recurringFrequency: '',
+    recurringFrequency: ''
   }
 
   updateFrequency = (event) => {
